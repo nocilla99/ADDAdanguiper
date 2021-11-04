@@ -1,5 +1,7 @@
 package Ejercicios;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Ejercicio1 {
@@ -7,12 +9,12 @@ public class Ejercicio1 {
 		String txt="";
 		while(true) {
 			if(a<3 &&b<3 && c<3) {
-				String s=String.format("%d", a*b*c);
-				txt=txt+"("+s+")";
+				String s=String.format("(%d)", a*b*c);
+				txt=txt+s;
 				return txt;
 			}else if(a<5 ||b<5 || c<5) {
-				String s=String.format("%d", a+b+c);
-				txt=txt+"("+s+")";
+				String s=String.format("(%d)", a+b+c);
+				txt=txt+s;
 				return txt;
 			}else if(a%2==0 &&b%2==0 && c%2==0) {
 				String s=String.format("%d", a*b*c);
@@ -30,9 +32,15 @@ public class Ejercicio1 {
 			
 	}
 	
-	public static String ej1Fu(int a,int b,int c) {
-		return Stream.iterate(new ej1(a,b,c,""),t->t.s=="condicionv (caso base)",t->new ej1(t.a/3,t.b-3,c/3,t.s+""))
-				.filter(t->t.s=="casos bases").map(t->t.s).limit(1).toString();
+	public static List<String> ej1Fu(int a,int b,int c) {
+		return Stream.iterate(new ej1(a,b,c,""),
+				t->!(t.a<3 &&t.b<3 && t.c<3)&&!(t.a<5 ||t.b<5 || t.c<5),
+				t->(t.a%2==0 &&t.b%2==0 && t.c%2==0)? 
+							new ej1(t.a/2,t.b-2,t.c/2,t.s+String.format("%d", t.a*t.b*t.c))
+							:new ej1(t.a/3,t.b-3,t.c/3,t.s+String.format("%d", t.a+t.c+t.b)))
+				.map(t->(t.a<3 &&t.b<3 && t.c<3)?t.s+String.format("(%d)", t.a*t.b*t.c):
+									t.s+String.format("(%d)", t.a+t.b+t.c))
+				.collect(Collectors.toList());
 	}
 	
 	public static String ej1ReF(int a, int b,int c) {
@@ -42,12 +50,12 @@ public class Ejercicio1 {
 	private static String ej1Ref(int a, int b, int c, String txt) {
 		
 		if(a<3 &&b<3 && c<3) {
-			String s=String.format("%d", a*b*c);
-			txt=txt+"("+s+")";
+			String s=String.format("(%d)", a*b*c);
+			txt=txt+s;
 			return txt;
 		}else if(a<5 ||b<5 || c<5) {
-			String s=String.format("%d", a+b+c);
-			txt=txt+"("+s+")";
+			String s=String.format("(%d)", a+b+c);
+			txt=txt+s;
 			return txt;
 		}else if(a%2==0 &&b%2==0 && c%2==0) {
 			String s=String.format("%d", a*b*c);
@@ -72,11 +80,11 @@ public class Ejercicio1 {
 		c=rec.c;
 		String txt=rec.s;
 		if(a<3 &&b<3 && c<3) {
-			String s=String.format("%d", a*b*c);
-			txt=txt+"("+s+")";
+			String s=String.format("(%d)", a*b*c);
+			txt=txt+s;
 		}else {
-			String s=String.format("%d", a+b+c);
-			txt=txt+"("+s+")";
+			String s=String.format("(%d)", a+b+c);
+			txt=txt+s;
 		}
 			return txt;
 	}

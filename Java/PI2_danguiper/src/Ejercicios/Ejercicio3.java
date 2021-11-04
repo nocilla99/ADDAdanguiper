@@ -1,60 +1,59 @@
 package Ejercicios;
 import java.util.List;
-
 import us.lsi.common.IntegerSet;
+
+//acabado
 public class Ejercicio3 {
 	public static IntegerSet ej3rec(List<Integer> li,Integer inicio,Integer fin) {
-		IntegerSet res= IntegerSet.empty();
-		
-		Integer indexIni= buscinicio(li,0,inicio,li.size());//inicio es el valor que queremos sacar
-		Integer indexFin= buscfinal(li,0,fin,li.size());
-		if(inicio==fin) {
-			res.add(li.get(inicio));
-			return res;
-		}else if(inicio>fin) {
+		Integer indexIni= buscinicio(li,0,inicio,li.size()-1);//inicio es el valor que queremos sacar
+		Integer indexFin= buscfinal(li,0,fin,li.size()-1);
+
+		if(indexIni==null) {
 			return IntegerSet.empty();
-		}else {
-			for(int i:li.subList(indexIni, indexFin)) {
-				res.add(i);
+		}
+		return IntegerSet.ofRange(li.get(indexIni), li.get(indexFin)+1);
+		
+	}
+
+		private static Integer buscinicio(List<Integer> li, Integer ini,Integer obj, Integer fin) {
+			if(obj<=li.get(li.size()-1)) {
+				return li.size()-1;
+			}else if(li.get(fin)==obj) {
+				return fin;
+			}else if(li.get(ini)==obj) {
+				return ini;
+			}else if(obj>li.get(0)) {
+				return null;
 			}
-			return res;
+			Integer indice = (ini+fin)/2;
+			if (li.get(indice)==obj||(li.get(indice-1)<obj&&obj<li.get(indice))) { 
+				return indice;
+			}else if(li.get(indice)>obj){
+				ini=indice;
+			}else {
+				fin=indice;	
+			}
+			return buscinicio(li,ini,obj,fin);
 		}
-	}
 
-	private static Integer buscfinal(List<Integer> li, int inicio, Integer obj, int fin) {
-		Integer indice=(inicio+fin)/2;
-		if(li.get(indice)<obj && (li.get(indice+1)>obj)) {
-			return indice;
-		}else if(li.get(indice)>obj){
-			fin=indice;
-		}else {
-			inicio=indice;
+		private static Integer buscfinal(List<Integer> li, int ini, Integer obj, int fin) {
+			if(obj>li.get(0)) {
+				return 0;
+			}else if(li.get(li.size()-1)>obj&&li.get(li.size()-2)<=obj) {
+				return li.size()-1;
+			}
+			if(li.get(fin)>obj&&li.get(fin+1)<=obj) {
+				return fin;
+			}
+			Integer indice=(ini+fin)/2;
+			if(li.get(indice)==obj) {
+				return indice+1;
+			}else if(li.get(indice)<=obj){
+				fin=indice;
+			}else if(li.get(indice)>obj) {
+				ini=indice;
+			}
+			return buscfinal(li,ini,obj,fin);
 		}
-		return buscfinal(li,inicio,obj,fin);
-	}
-
-	private static Integer buscinicio(List<Integer> li, Integer inicio,Integer obj, Integer fin) {
-		Integer indice = (inicio+fin)/2;
-		if (li.get(indice)==obj||(li.get(indice-1)<obj&&obj<li.get(indice))) { //Exacto ||  1 3 5 7 (cae en 5(indice) y buscamos 4(obj))-> [indice]>obj && [indice-1]<obj
-			return indice;
-		}else if(li.get(indice)<obj){
-			inicio=indice;
-		}else {
-			fin=indice;	
-		}
-		return buscinicio(li,inicio,obj,fin);
 	
-	}
-	/*
-	 //rangeof if match-> add
-	 public static IntegerSet prueba(List<Integer> ls,int inicio,int fin) {
-		 IntegerSet res=IntegerSet.ofRange(inicio-1,fin-1);
-		 IntegerSet resu=IntegerSet.empty();
-		 for(int i:res) {
-			 if(ls.indexOf(i)!=-1) {
-				 resu.add(ls.get(i));
-			 }
-		 }
-		 return resu;
-	 }*/
 }
