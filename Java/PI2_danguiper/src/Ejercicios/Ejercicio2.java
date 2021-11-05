@@ -6,7 +6,7 @@ import us.lsi.common.Matrix;
 import us.lsi.common.View4;
 
 //Acabado
-public class ejercicio2 {
+public class Ejercicio2 {
 	public static List<String> ej1Rec(Matrix<String> mat){
 		List<String> ls=new ArrayList<>();
 		return ej1rec(mat,ls);	
