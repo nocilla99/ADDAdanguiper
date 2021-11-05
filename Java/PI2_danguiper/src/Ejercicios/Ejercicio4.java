@@ -1,6 +1,7 @@
 package Ejercicios;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Ejercicio4 {
@@ -46,6 +47,26 @@ public class Ejercicio4 {
 				return b;
 			}
 		}
+			
+	}
+	
+	public static Long iter(Long a) {
+		Map<Long,Long> map =new HashMap<>();
+		map.put(2l, 6l);
+		map.put(1l, 4l);
+		map.put(0l, 2l);
+		Long ind=3L;
+		while(ind<=a) {
+		
+			Long d=2l*map.get(ind-1l);
+			Long b=4l*map.get(ind-2l);
+			Long c=6l*map.get(ind-3l);
+			Long acum=c+b+d;
+			map.put(ind, acum);
+			ind++;
+				
+		}
+		return map.get(a);
 		
 	}
 }

@@ -9,12 +9,16 @@ import us.lsi.common.Matrix;
 public class test2 {
 
 	public static void main(String[] args) {
-		String ruta= "./fichero/PI2Ej2DatosEntrada2.txt";
+		String ruta= "./fichero/PI2Ej2DatosEntrada1.txt";
 		List<String> fichero=Files2.linesFromFile(ruta);
 		Integer m= fichero.size();
+		
 		String[][]data= new String[m][m];
+		
 		for (int i=0;i<fichero.size();i++) {
+			
 			String[] x=fichero.get(i).split(" ");
+			
 			for (int j=0;j<x.length;j++) {
 				data[i][j]=x[j];
 			}

@@ -19,7 +19,7 @@ public class test3 {
 			for (String i:li) {
 				a.add(Integer.valueOf(i));
 			}
-			System.out.println("Entrada "+a+"\n Rango: ["+ lims[0]+","+lims[1]+")\n Conjunto: "+Ejercicio3.ej3rec(a,Integer.valueOf(lims[0]),Integer.valueOf(lims[1]))+"\n");
+			System.out.println("Entrada "+a+"\n Rango: ["+ lims[0]+","+lims[1]+")\n Conjunto: "+Ejercicio3.ej3_v2(a,Integer.valueOf(lims[0]),Integer.valueOf(lims[1]))+"\n");
 		}
 
 	}

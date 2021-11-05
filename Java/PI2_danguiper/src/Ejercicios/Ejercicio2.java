@@ -20,11 +20,11 @@ public class Ejercicio2 {
 		ls.add(iteracion);
 		//ls.add(mat.corers()) -> cambiar a List<List<String>>
 		if (!(mat.nc()<=2)){
-				View4<Matrix<String>> v4=mat.views4();
-				ej1rec(v4.a(),ls);
-				ej1rec(v4.b(),ls);
-				ej1rec(v4.c(),ls);
-				ej1rec(v4.d(),ls);
+				View4<Matrix<String>> partes=mat.views4();
+				ej1rec(partes.a(),ls);
+				ej1rec(partes.b(),ls);
+				ej1rec(partes.c(),ls);
+				ej1rec(partes.d(),ls);
 			}
 		return ls;
 	}
