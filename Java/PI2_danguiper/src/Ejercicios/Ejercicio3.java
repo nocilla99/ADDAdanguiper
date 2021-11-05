@@ -57,10 +57,12 @@ public class Ejercicio3 {
 			return buscfinal(li,ini,obj,fin);
 		}
 	
+	
+//-------------------------------------------------------------------------------------------------------
 	public static IntegerSet ej3_v2(List<Integer> li,int ini,int fin) {
 		return ej3rec2(li,ini,fin,IntegerSet.empty(),0);
 	}
-
+	
 	private static IntegerSet ej3rec2(List<Integer> li, int ini, int fin, IntegerSet res,int indice) {
 		if(ini>li.get(0)) {
 			return res;
