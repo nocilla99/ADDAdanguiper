@@ -27,9 +27,9 @@ public class test2 {
 		Matrix<String> matriz=Matrix.of(data);
 		List<String>l=Ejercicio2.ej1Rec(matriz);
 		System.out.println(matriz);
-		/*for (String elem:l) {
+		for (String elem:l) {
 			System.out.println((l.indexOf(elem)+1)+") "+elem);
-		}*/
+		}
 	}
 
 }
