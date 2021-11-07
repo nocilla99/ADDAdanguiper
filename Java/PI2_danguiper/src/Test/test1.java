@@ -19,7 +19,8 @@ public class test1 {
 			System.out.println("Entrada ("+a+","+b+","+c+")\n Ite: "+Ejercicio1.Ej1it(a,b,c)
 			+"\n Re Final: "+Ejercicio1.ej1ReF(a, b, c)
 			+"\n Rec No Final: "+Ejercicio1.ej1ReNF(a, b, c)
-			+"\n Fun: "+Ejercicio1.ej1Fu(a, b, c));
+			+"\n Fun: "+Ejercicio1.ej1Fu(a, b, c)
+			);
 		}
 	}
 

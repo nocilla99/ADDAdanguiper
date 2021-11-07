@@ -35,11 +35,12 @@ public class Ejercicio1 {
 	public static List<String> ej1Fu(int a,int b,int c) {
 		return Stream.iterate(new ej1(a,b,c,""),
 				t->!(t.a<3 &&t.b<3 && t.c<3)&&!(t.a<5 ||t.b<5 || t.c<5),
-				t->(t.a%2==0 &&t.b%2==0 && t.c%2==0)? 
+				t->(t.a%2==0 && t.b%2==0 && t.c%2==0)? 
 							new ej1(t.a/2,t.b-2,t.c/2,t.s+String.format("%d", t.a*t.b*t.c))
 							:new ej1(t.a/3,t.b-3,t.c/3,t.s+String.format("%d", t.a+t.c+t.b)))
-				.map(t->(t.a<3 &&t.b<3 && t.c<3)?t.s+String.format("(%d)", t.a*t.b*t.c):
-									t.s+String.format("(%d)", t.a+t.b+t.c))
+				.filter(t->!(t.a<3 &&t.b<3 && t.c<3)&&!(t.a<5 ||t.b<5 || t.c<5))
+				.map(t->(t.a<3 &&t.b<3 && t.c<3)?String.format(t.s+"%d(num)", t.a*t.b*t.c):
+									String.format(t.s+"%d(num)", t.a+t.b+t.c))
 				.collect(Collectors.toList());
 	}
 	
