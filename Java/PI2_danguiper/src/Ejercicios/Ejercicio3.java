@@ -7,11 +7,14 @@ public class Ejercicio3 {
 	public static IntegerSet ej3rec(List<Integer> li,Integer inicio,Integer fin) {
 		Integer indexIni= buscinicio(li,0,inicio,li.size()-1);//indice del valor inicio (el valor más bajo)
 		Integer indexFin= buscfinal(li,0,fin,li.size()-1);//indice del valor fin
-
+		IntegerSet res=IntegerSet.empty();
 		if(indexIni==null) {
 			return IntegerSet.empty();
 		}
-		return IntegerSet.ofRange(li.get(indexIni), li.get(indexFin)+1);
+		for(Integer i:li.subList(indexFin,indexIni+1)) {
+			res.add(i);
+		}
+		return res;
 		
 	}
 
@@ -57,25 +60,4 @@ public class Ejercicio3 {
 			}
 			return buscfinal(li,ini,obj,fin);
 		}
-	
-	
-//--------------------------------------AQUÍ EMPIEZA LA OTRA FORMA EN LA QUE LO HICE--------------------------------------------
-	public static IntegerSet ej3_v2(List<Integer> li,int ini,int fin) {
-		return ej3rec2(li,ini,fin,IntegerSet.empty(),0);
-	}
-	
-	private static IntegerSet ej3rec2(List<Integer> li, int ini, int fin, IntegerSet res,int indice) {
-		if(ini>li.get(0)) {
-			return res;
-		}else {
-			if(indice==li.size()) {
-				return res;
-			}else {
-				if(li.get(indice)>=ini && li.get(indice)<fin) {
-					res.add(li.get(indice));
-				}
-				return ej3rec2(li,ini,fin,res,indice+1);
-			}
-		}
-	}
 }
