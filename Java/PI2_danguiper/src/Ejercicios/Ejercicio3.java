@@ -5,7 +5,7 @@ import us.lsi.common.IntegerSet;
 public class Ejercicio3 {
 	
 	public static IntegerSet ej3rec(List<Integer> li,Integer inicio,Integer fin) {
-		Integer indexIni= buscinicio(li,0,inicio,li.size()-1);//indice del valor inicio (el valor m·s bajo)
+		Integer indexIni= buscinicio(li,0,inicio,li.size()-1);//indice del valor inicio (el valor m√°s bajo)
 		Integer indexFin= buscfinal(li,0,fin,li.size()-1);//indice del valor fin
 		IntegerSet res=IntegerSet.empty();
 		if(indexIni==null) {
@@ -19,16 +19,16 @@ public class Ejercicio3 {
 	}
 
 	private static Integer buscinicio(List<Integer> li, Integer ini,Integer obj, Integer fin) {
-			if(obj<=li.get(li.size()-1)) {//Si es m·s pequeÒo que el ˙ltimo valor(menor), devuelve el indice del menor elemento
+			if(obj<=li.get(li.size()-1)) {//Si es m√°s peque√±o que el √∫ltimo valor(menor), devuelve el indice del menor elemento
 				return li.size()-1;
 			}else if(li.get(fin)==obj) {
 				return fin;
 			}else if(li.get(ini)==obj) {
 				return ini;
-			}else if(obj>li.get(0)) {//Mayor que el primer elemento, devuelve un null, ya que el IntegerSet va a ser vacÌo
+			}else if(obj>li.get(0)) {//Mayor que el primer elemento, devuelve un null, ya que el IntegerSet va a ser vac√≠o
 				return null;
 			}
-			//Siguiente iteraciÛn
+			//Siguiente iteraci√≥n
 			Integer indice = (ini+fin)/2;
 			if (li.get(indice)==obj||(li.get(indice-1)<obj&&obj<li.get(indice))) { 
 				return indice;
@@ -41,7 +41,7 @@ public class Ejercicio3 {
 		}
 
 	private static Integer buscfinal(List<Integer> li, int ini, Integer obj, int fin) {
-		//este mÈtodo es igual al de buscinicio
+		//este m√©todo es igual al de buscinicio
 			if(obj>li.get(0)) {
 				return 0;
 			}else if(li.get(li.size()-1)>obj&&li.get(li.size()-2)<=obj) {
