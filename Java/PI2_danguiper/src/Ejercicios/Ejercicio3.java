@@ -3,7 +3,6 @@ import java.util.List;
 import us.lsi.common.IntegerSet;
 
 public class Ejercicio3 {
-	//acabar el 1 funcio9nal usando metodos del record
 	public static IntegerSet ej3rec(List<Integer> li,Integer inicio,Integer fin) {
 		Integer indexIni= buscinicio(li,0,inicio,li.size()-1);//indice del valor inicio (el valor mas bajo)
 		Integer indexFin= buscfinal(li,0,fin,li.size()-1);//indice del valor fin

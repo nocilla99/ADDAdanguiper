@@ -34,19 +34,15 @@ public class Ejercicio1 {
 	public static String ej1Fu(int a,int b,int c) {
 				return Stream
 				.iterate(new ej1(a,b,c,""),
-						t->!(t.a<3 &&t.b<3 && t.c<3)||!(t.a<5 ||t.b<5 || t.c<5),
-						t->(t.a%2==0 && t.b%2==0 && t.c%2==0)? 
-								new ej1(t.a/2,t.b-2,t.c/2,String.format(t.s+"%d", t.a*t.b*t.c))
-								:new ej1(t.a/3,t.b-3,t.c/3,String.format(t.s+"%d", t.a+t.c+t.b))
+						t->t.b(t.a, t.b, t.c),
+						t->t.NoBase(t.a, t.b, t.c, t.s)
 						)
 				.map(t->
 						(t.a<3 && t.b<3 && t.c<3)?
 								new ej1(t.a,t.b,t.c,String.format(t.s+"(%d)", t.a*t.b*t.c))
 								:(t.a<5 ||t.b<5 || t.c<5)?
 										new ej1(t.a,t.b,t.c,String.format(t.s+"(%d)", t.a+t.b+t.c))
-										:(t.a%2==0 &&t.b%2==0 && t.c%2==0)?
-												new ej1(t.a/2,t.b-2,t.c/2,String.format(t.s+"%d", t.a*t.b*t.c))
-												:new ej1(t.a/3,t.b-3,t.c/3,String.format(t.s+"%d", t.a+t.c+t.b))
+										:t.NoBase(t.a, t.b, t.c, t.s)
 						)
 				.filter(t->(t.a<3 &&t.b<3 && t.c<3) || (t.a<5 ||t.b<5 || t.c<5))
 				.map(t->(t.s().contains("("))?
@@ -55,6 +51,22 @@ public class Ejercicio1 {
 					String.format(t.s+"(%d)", t.a*t.b*t.c)
 						:String.format(t.s+"(%d)", t.a+t.b+t.c)
 					).collect(Collectors.toList()).get(0);
+	}
+	public record ej1(int a,int b,int c,String s) {
+		public ej1 NoBase(int a,int b,int c,String s) {
+			if(a%2==0 && b%2==0 && c%2==0) {
+				return new ej1(a/2,b-2,c/2,String.format(s+"%d", a*b*c));
+			}else{
+				return new ej1(a/3,b-3,c/3,String.format(s+"%d", a+c+b));
+			}
+		}
+		public boolean b(int a,int b,int c) {
+			if(!(a<3 &&b<3 && c<3)||!(a<5 ||b<5 || c<5)){
+				return true;
+			}else {
+				return false;
+			}
+		}
 	}
 	
 	public static String ej1ReF(int a, int b,int c) {
@@ -125,6 +137,5 @@ public class Ejercicio1 {
 	}
 	
 	
-	public record ej1(int a,int b,int c,String s) {
-	}
+	
 }
