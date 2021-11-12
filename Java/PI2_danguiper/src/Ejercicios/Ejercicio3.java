@@ -3,6 +3,7 @@ import java.util.List;
 import us.lsi.common.IntegerSet;
 
 public class Ejercicio3 {
+
 	public static IntegerSet ej3rec(List<Integer> li,Integer inicio,Integer fin) {
 		Integer indexIni= buscinicio(li,0,inicio,li.size()-1);//indice del valor inicio (el valor mas bajo)
 		Integer indexFin= buscfinal(li,0,fin,li.size()-1);//indice del valor fin
@@ -65,14 +66,29 @@ public class Ejercicio3 {
 		if(inicio>=li.get(0)) {
 			return res;
 		}
-		return ej3recmul(res,li,inicio,fin,(li.size()-1)/2);
+	
+		return ej3recmul(res,li,0,(li.size()-1),inicio,fin);
 	}
 	
-	private static IntegerSet ej3recmul(IntegerSet res, List<Integer> li, int inicio, int fin, int pivote) {
-		//ver derecha(R1 valor menor)  ver izquierda(R2 valor mayor)  desde el punto medio(pivote(?)) 
-		//ver si en R1 el pivote es inicio o cumple y parar R1 y meter en res
-		//ver si en R2 el pivote es inicio o cumple y parar R2 y meter en res
-		//return res
-		return res;
+	private static IntegerSet ej3recmul(IntegerSet res, List<Integer> li, int ind0, int indF,int inicio,int fin) {
+		if(indF-ind0==1) {
+				if(fin>li.get(indF) && li.get(indF)>=inicio) {
+					res.add(li.get(indF));
+				}
+				if((fin>li.get(ind0) && li.get(ind0)>=inicio)){
+					res.add(li.get(ind0));
+				}
+			return res;
+		}else {
+			int pivote=(ind0+indF)/2;
+			if(fin>li.get(pivote)&&li.get(pivote)>=inicio) {
+				res.add(li.get(pivote));
+			}
+			IntegerSet a= ej3recmul(res, li, ind0, pivote,inicio,fin);
+			IntegerSet b= ej3recmul(res,li,pivote,indF,inicio,fin);
+			res = res.union(a.union(b));
+			return res;
+		}
+		
 	}
 }
