@@ -131,7 +131,7 @@ public class Ejercicio1 {
 				a=a/3;
 				b=b-3;
 				c=c/3;
-							}
+			}
 		}
 		return ej1recnf(a,b,c,txt);
 	}

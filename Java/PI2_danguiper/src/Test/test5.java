@@ -19,9 +19,10 @@ public class test5 {
 			Integer a=Integer.valueOf(x[0]);
 			Integer b=Integer.valueOf(x[1]);
 			Integer c=Integer.valueOf(x[2]);
-			System.out.println("Entrada ("+a+","+b+","+c+")\n Rec NoMem: "+Ejercicio5.RecNM(a,b,c)
-			+"\n RecMem: "+Ejercicio5.RecCM(a,b,c,m)
-			+"\n Ite: "+Ejercicio5.ite(a, b, c));
+			System.out.println("Entrada ("+a+","+b+","+c+")"
+			+"\n Rec NoMem: "+Ejercicio5.RecNM(a,b,c)
+			+"\n RecMem:    "+Ejercicio5.RecCM(a,b,c,m)
+			+"\n Ite:       "+Ejercicio5.ite(a, b, c));
 		}
 	}
 }

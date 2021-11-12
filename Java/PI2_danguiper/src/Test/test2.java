@@ -9,7 +9,7 @@ import us.lsi.common.Matrix;
 public class test2 {
 
 	public static void main(String[] args) {
-		String ruta= "./fichero/PI2Ej2DatosEntrada1.txt";
+		String ruta= "./fichero/PI2Ej2DatosEntrada2.txt";
 		List<String> fichero=Files2.linesFromFile(ruta);
 		Integer m= fichero.size();
 		

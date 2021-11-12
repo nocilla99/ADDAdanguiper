@@ -16,8 +16,10 @@ public class test4 {
 		for (String l:fichero) {
 			String[] x= l.split("=");
 			BigInteger dato=BigInteger.valueOf(Long.valueOf(x[1]));
-			System.out.println("Entrada :"+l+"\n Rec Sin Mem: "+Ejercicio4.RecNM(dato)
-			+"\n Rec Con Mem: "+Ejercicio4.RecCM(dato,map)+"\n Ite: "+Ejercicio4.iter(Long.valueOf(x[1])));
+			System.out.println("Entrada :"+l
+			+"\n Rec Sin Mem: "+Ejercicio4.RecNM(dato)
+			+"\n Rec Con Mem: "+Ejercicio4.RecCM(dato,map)
+			+"\n Ite:         "+Ejercicio4.iter(Long.valueOf(x[1])));
 		}
 
 	}
