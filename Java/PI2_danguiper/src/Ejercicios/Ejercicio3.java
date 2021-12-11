@@ -18,7 +18,7 @@ public class Ejercicio3 {
 		
 	}
 
-	private static Integer buscinicio(List<Integer> li, Integer ini,Integer obj, Integer fin) {
+	private static Integer buscinicio(List<Integer> li, Integer ini,Integer obj, Integer fin) { //obj hace referencia al objetivo, el numero del rango
 			if(obj<=li.get(li.size()-1)) {//Si es mas pequeño que el ultimo valor(menor), devuelve el indice del menor elemento
 				return li.size()-1;
 			}else if(li.get(fin)==obj) {
