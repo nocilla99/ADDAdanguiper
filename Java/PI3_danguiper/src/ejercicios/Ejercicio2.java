@@ -21,6 +21,10 @@ public class Ejercicio2 {
 				}
 			break;
 		case Binary:
+			et= arbol.getLabel();
+			if(et>=limite){ 
+				res.add(arbol.getLabel());
+				}
 			ej2reca(arbol.getRight(),limite,res);
 			ej2reca(arbol.getLeft(),limite,res);
 			break;

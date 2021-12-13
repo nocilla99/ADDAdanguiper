@@ -5,33 +5,33 @@ import java.util.Set;
 import us.lsi.tiposrecursivos.Tree;
 
 public class Ejercicio4 {
-	public static Set<String> ej3(Tree<String> arbol){
-		return ej3reca(arbol, "", new HashSet<>());
+	public static Set<String> ej4REC(Tree<String> arbol){
+		return ej4reca(arbol, "", new HashSet<>());
 	}
 
-	private static Set<String> ej3reca(Tree<String> arbol,String pila,Set<String> res) {
+	private static Set<String> ej4reca(Tree<String> arbol,String pila,Set<String> res) {
 		switch(arbol.getType()) {
 		case Empty:
 			break;
 		case Leaf:
-			pila+=arbol.getLabel();
-			if(palindroma(pila)) {
-				res.add(pila);
+			String pilaux=pila.concat(arbol.getLabel());
+			if(palindroma(pilaux)) {
+				res.add(pilaux);
 			}
-			break;
+			return res;
 		case Nary:
+			pilaux=pila.concat(arbol.getLabel());
 			for(Tree<String> hijo:arbol.getChildren()) {
-				ej3reca(hijo,pila+arbol.getLabel(),res);
+				ej4reca(hijo,pilaux,res);
 			}
-		}
-		return res;
+		}return res;
 	}
-
+	//falta areglar el metodo
 	private static boolean palindroma(String s) {
 		boolean res= true;
 		for(int i=0;i<s.length()/2;i++) {
 			if(res) {
-				res= res && (s.charAt(i)!=s.charAt(-i));
+				res= res && (s.charAt(i)==s.charAt(s.length()-(i+1)));
 			}
 		} 
 		return res;

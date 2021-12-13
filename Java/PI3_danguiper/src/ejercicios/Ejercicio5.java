@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import us.lsi.tiposrecursivos.BinaryTree;
 
 public class Ejercicio5 {
@@ -17,7 +16,7 @@ public class Ejercicio5 {
 	}
 
 	private static Map<Paridad, List<Integer>> ej5reca(BinaryTree<Integer> arbol, Map<Paridad,List<Integer>>  res) {
-		if(arbol.isBinary()) {
+		if(!arbol.isEmpty()) {
 			if(!arbol.getRight().isEmpty() && !arbol.getLeft().isEmpty()) {
 				int i=arbol.getLeft().getLabel();
 				int p= arbol.getLabel();
