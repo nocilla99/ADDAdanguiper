@@ -23,17 +23,20 @@ public class Ejercicio5 {
 				int d=arbol.getRight().getLabel();
 				if(i<p && p<d) {
 					res.get(getParidad(p)).add(p);
+					
 				}
-				if(arbol.getLeft().isBinary()) {
-					ej5reca(arbol.getLeft(),res);
-				}
-				if(arbol.getRight().isBinary()) {
-					ej5reca(arbol.getRight(),res);
-				}
+			}
+			if(arbol.getLeft().isBinary()) {
+				ej5reca(arbol.getLeft(),res);
+			}
+			if(arbol.getRight().isBinary()) {
+				ej5reca(arbol.getRight(),res);
+			
 			}
 			
 		}
 		return res;
+		
 	}
 
 	
