@@ -12,8 +12,9 @@ public class Test3 {
 		List<String> lineas= Files2.linesFromFile(ruta); 
 		for (String linea:lineas) {
 			BinaryTree<Integer> arbol= BinaryTree.parse(linea,dato->Integer.valueOf(dato));
+			Ejercicio3.Dupla salida= Ejercicio3.ej3REC(arbol);
 			System.out.println("Entrada: "+arbol+"\n"
-				+"  Salida -> "+Ejercicio3.ej3REC(arbol)
+				+"  Salida -> "+salida.valor()+" : "+salida.lista()
 				);
 		}
 
