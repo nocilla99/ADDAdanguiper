@@ -1,0 +1,27 @@
+strict graph G {
+  1 [ style="filled" label="4,3" color="red" shape="ellipse" ];
+  2 [ style="filled" label="1,2" color="red" shape="ellipse" ];
+  3 [ style="filled" label="1,6" color="red" shape="ellipse" ];
+  4 [ style="filled" label="2,3" color="red" shape="ellipse" ];
+  5 [ style="filled" label="4,5" color="orange" shape="ellipse" ];
+  6 [ style="filled" label="2,2" color="orange" shape="ellipse" ];
+  7 [ style="filled" label="5,6" color="orange" shape="ellipse" ];
+  8 [ style="filled" label="2,4" color="orange" shape="ellipse" ];
+  9 [ style="filled" label="4,6" color="orange" shape="ellipse" ];
+  10 [ style="filled" label="4,4" color="orange" shape="ellipse" ];
+  11 [ style="filled" label="4,1" color="green" shape="ellipse" ];
+  12 [ style="filled" label="1,4" color="orange" shape="ellipse" ];
+  13 [ style="filled" label="3,2" color="orange" shape="ellipse" ];
+  14 [ style="filled" label="3,4" color="orange" shape="ellipse" ];
+  1 -- 10 [ color="blue" label="1.10" ];
+  2 -- 6 [ color="blue" label="1.10" ];
+  4 -- 6 [ color="blue" label="1.10" ];
+  4 -- 8 [ color="blue" label="1.10" ];
+  5 -- 9 [ color="blue" label="1.10" ];
+  5 -- 10 [ color="blue" label="1.10" ];
+  6 -- 13 [ color="blue" label="1.10" ];
+  7 -- 9 [ color="blue" label="1.10" ];
+  8 -- 12 [ color="blue" label="1.10" ];
+  8 -- 14 [ color="blue" label="1.10" ];
+  10 -- 14 [ color="blue" label="1.10" ];
+}
