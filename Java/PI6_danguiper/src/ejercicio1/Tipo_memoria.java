@@ -20,9 +20,10 @@ public class Tipo_memoria {
 	}
 
 	public Tipo_memoria(int capacidad, int tamMax) {
-		super();
 		this.capacidad = capacidad;
 		this.tamMax = tamMax;
+	}
+	public Tipo_memoria() {
 	}
 	
 }

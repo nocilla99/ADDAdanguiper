@@ -16,11 +16,12 @@ public class TipoArchivo {
 		this.tamanyo = tamanyo;
 	}
 	public TipoArchivo(String nombre, int tamanyo) {
-		super();
 		this.nombre = nombre;
 		this.tamanyo = tamanyo;
 	}
 	
+	public TipoArchivo() {
+	}
 	
 
 }
