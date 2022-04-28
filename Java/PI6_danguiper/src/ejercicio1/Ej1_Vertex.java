@@ -1,5 +1,6 @@
 package ejercicio1;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -18,29 +19,33 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 	}
 	
 	
-	public static Ej1_Vertex V_final() {
-		//esta bien este vertice?? capRestantes
-		return of(datosEj1.getNumArchivos(),List2.ofTam(datosEj1.getNumMemorias(), 0));
-	}
+	
 	@Override
 	public List<Integer> actions() {
 		
 		if(indice>=datosEj1.getNumArchivos()) {
 			return List2.empty();
 		}
-		return IntStream.range(0, datosEj1.getNumMemorias()-1)
-				.filter(memos->datosEj1.getMemoria(memos).getTamMax()>=datosEj1.getArchivo(indice).getPeso()
+		 List<Integer> la= new ArrayList<>();
+		 la.add(-1);
+		 la.addAll(IntStream.range(-1, datosEj1.getNumMemorias())
+				.filter(x->x!=-1).filter(memos->datosEj1.getMemoria(memos).getTamMax()>=datosEj1.getArchivo(indice).getPeso()
 						&& capRestantes.get(memos)>=datosEj1.getArchivo(indice).getPeso())
-				.boxed().toList();
+				.boxed().toList());
+		 
+		 return la;
 	}
 
 	@Override
 	public Ej1_Vertex neighbor(Integer a) {
-		List<Integer> copia= List2.copy(capRestantes);
 		
-		//restarle a la capacidad el tamaño del archivo
-		copia.set(a, copia.get(a)-datosEj1.getArchivo(indice).getPeso());
-		return of(indice+1,copia);
+			List<Integer> copia= List2.copy(capRestantes);
+		if(a!=-1) {
+				copia.set(a, copia.get(a)-datosEj1.getArchivo(indice).getPeso());
+			return of(indice+1,copia);
+		}else {
+			return of(indice+1,copia);
+		}
 	}
 
 	private static Ej1_Vertex of(int i, List<Integer> listCaps) {

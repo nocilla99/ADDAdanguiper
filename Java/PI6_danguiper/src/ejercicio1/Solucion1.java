@@ -1,7 +1,8 @@
 package ejercicio1;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedMap;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ public class Solucion1 {
 	
 		
 		public int archivosAlmacenados;
-		public SortedMap<Integer,List<String>> solucion;
+		public Map<Integer,List<String>> solucion;
 	
 		
 
@@ -31,17 +32,23 @@ public class Solucion1 {
 				if(solu.solucion.containsKey(g)) {
 					solu.solucion.get(g).add(datosEj1.getArchivo(i).nombre());	
 				}else {
-					solu.solucion.put(g,List.of(datosEj1.getArchivo(i).nombre()));
+					List<String> li= new ArrayList<String>();
+					li.add(datosEj1.getArchivo(i).nombre());
+					solu.solucion.put(g,li);
 					
 				}
 			}
 			return solu;
 			
 		}
+		
+		public String IndMem(Integer indMas1) {
+			String r=(indMas1==0)? "No almacenados": "Memoria "+indMas1.toString();
+			return r;
+		}
 
-		public String toString() {
-			String s= "\nArchivos almacenados :"+archivosAlmacenados;
-			return solucion.entrySet().stream().map(e->"Memoria "+(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n Archivos: \n"+s));
+		public String toString() {;
+			return solucion.entrySet().stream().map(e->IndMem(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n"));
 			}
 }
 	

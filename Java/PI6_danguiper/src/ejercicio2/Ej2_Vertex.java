@@ -7,18 +7,20 @@ import ejercicio2.datosEj2.TipoCandidato;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
-public record Ej2_Vertex(int indice,List<String> cualisPendientes,Double presupuestoRestante, List<TipoCandidato> elegidos) 
+public record Ej2_Vertex(int indice,List<String> cualisPendientes, List<TipoCandidato> elegidos) 
 implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 
 	
-	public static Ej2_Vertex of(int indice,List<String> cualisPendientes,Double presupuestoRestante,List<TipoCandidato> elegidos) {
-		return new Ej2_Vertex(indice,cualisPendientes,presupuestoRestante,elegidos);
+	public static Ej2_Vertex of(int indice,List<String> cualisPendientes,List<TipoCandidato> elegidos) {
+		return new Ej2_Vertex(indice,cualisPendientes,elegidos);
 	}
 	
-	public static Ej2_Vertex inicial() {
+	public static Ej2_Vertex V_inicial() {
 		
-		return of(0,datosEj2.requeridas,datosEj2.presupuesto,List2.empty());
+		return of(0,datosEj2.requeridas,List2.empty());
 	}
+	
+	
 	
 	public static Predicate<Ej2_Vertex> goal(){
 		return v->v.indice==datosEj2.getNumCandidatios();
@@ -47,8 +49,9 @@ implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 		res= res && datosEj2.getCandidato(indice).cualidades().contains(cualisPendientes.get(IndCualidadPendiente));
 		
 		//no hace el presupuesto a 0
-		
-		res = res && presupuestoRestante-datosEj2.getCandidato(indice).precio()>=0;
+		Double presupuestoRestante=datosEj2.presupuesto;
+		presupuestoRestante -= elegidos.stream().map(can->can.precio()).reduce(0.,Double::sum);
+		res = res && -datosEj2.getCandidato(indice).precio()>=0;
 		
 		return res;
 	}
@@ -59,7 +62,7 @@ implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 		copiaCualis.remove(copiaCualis.get(a));
 		List<TipoCandidato>copiCandidatos= List2.copy(elegidos);
 		copiCandidatos.add(datosEj2.getCandidato(indice+1));
-		return of(indice+1,	copiaCualis,presupuestoRestante-datosEj2.getCandidato(indice).precio(),copiCandidatos);
+		return of(indice+1,	copiaCualis,copiCandidatos);
 	}
 
 	@Override
@@ -70,7 +73,19 @@ implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 	public int indice() {
 		return indice; 
 	}
+/*•Propiedades de los vértices (Prop. individuales)
 
+Básicas:
+
+•i: entero. Índice que recorre todas las variables del modelo.
+
+•as: lista de enteros. Lista de alternativas tomadas
+
+Derivadas:
+
+•cualidadesACubrir: conjunto de enteros. Índices de las cualidades que faltan por cubrir.
+
+•presupRestante: real. Presupuesto restante.*/
 
 	
 }

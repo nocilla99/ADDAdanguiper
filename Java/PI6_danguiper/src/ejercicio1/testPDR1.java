@@ -1,5 +1,7 @@
 package ejercicio1;
 
+import org.jgrapht.GraphPath;
+
 import us.lsi.graphs.alg.*;
 import us.lsi.graphs.alg.DynamicProgramming.PDType;
 import us.lsi.graphs.virtual.EGraph;
@@ -11,16 +13,18 @@ public class testPDR1 {
 		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada1.txt");
 		
 		Ej1_Vertex v1= Ej1_Vertex.V_inicial();
-		Ej1_Vertex v2= Ej1_Vertex.V_final();
 		
 		
 		EGraph<Ej1_Vertex, Ej1_Edge> grafo= 
-				SimpleVirtualGraph.last(v1,Ej1_Vertex.goal(),v-> (double)v.indice(),v2);
+				SimpleVirtualGraph.sum(v1,Ej1_Vertex.goal(),e-> (double)e.weight());
 		
 		DynamicProgrammingReduction<Ej1_Vertex, Ej1_Edge> dpr= 
-				DynamicProgrammingReduction.of(grafo,heuristicaEj1::heuristic,PDType.Min);
+				DynamicProgrammingReduction.of(grafo,heuristicaEj1::heuristic,PDType.Max);
 		
-		//HAce falta lo de greedy?
+		GraphPath<Ej1_Vertex,Ej1_Edge> S= dpr.search().get();
+		Solucion1 sol= Solucion1.of(S);
+		System.out.println(sol);
+		
 		
 		
 		

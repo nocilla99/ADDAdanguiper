@@ -11,7 +11,8 @@ public class heuristica {
 			return 0.;
 		}		
 		
-		Double h= (datosEj2.getNumCandidatios()-actual.indice()*5.);
+		Double h= (datosEj2.getNumCandidatios()*5-actual.indice()*5.);
+		for restantes :: valoraciones
 		return h;
 		
 	}
