@@ -34,10 +34,10 @@ public class Solucion2 {
 		}
 
 		public String toString() {
-			System.out.println( "\n Valoracion total: "+v_TOTAL);
-			System.out.println("\n Candidatos("+cands.size()+"):\n"+cands.stream().map(c->c.id()).collect(Collectors.toList()));
+			System.out.println( "Valoracion total: "+v_TOTAL);
+			System.out.println("Candidatos("+cands.size()+"): "+cands.stream().map(c->c.id()).collect(Collectors.toList()));
 			Double coste=cands.stream().map(c->c.precio()).reduce(0.,Double::sum);
-			System.out.println("\n Coste: "+coste);
+			System.out.println("Coste: "+coste);
 			return "";
 			}
 }
