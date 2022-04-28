@@ -9,9 +9,7 @@ public class heuristicaEj1 {
 		if(actual.indice()>=datosEj1.getNumArchivos()) {
 			return 0.;
 		}
-		//minimizar la diferencia : vertices que faltan para el mejor de los casos(que todos quepan)
 		return (double)datosEj1.getNumArchivos()-actual.indice();
-		//maximizar el indice
-		//return (double)actual.indice()
+
 	}
 }

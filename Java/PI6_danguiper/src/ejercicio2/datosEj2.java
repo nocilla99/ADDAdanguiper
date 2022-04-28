@@ -1,14 +1,15 @@
 package ejercicio2;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import us.lsi.common.Files2;
 
 public class datosEj2 {
-	public static List<TipoCandidato> candidatos;
+	public static List<TipoCandidato> candidatos=new ArrayList<>();
 	
-	public static List<String> requeridas;
+	public static List<String> requeridas=new ArrayList<>();
 	
 	public static Double presupuesto;
 	
@@ -53,7 +54,7 @@ public class datosEj2 {
 		return candidatos.get(i);
 	}
 
-	public static Integer getNumCandidatios() {
+	public static Integer getNumCandidatos() {
 		return candidatos.size();
 	}
 	
