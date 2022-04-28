@@ -31,7 +31,10 @@ public record pr3Vertex(int indice,List<Integer> capRestante) implements Virtual
 		if(indice>= datosprob3.getNumAlumnos()) {
 			return la;
 		}
-			return IntStream.range(0, datosprob3.getNumGrupos()).filter(g-> capRestante.get(g)>0).filter(g-> datosprob3.getAfinidad(indice,g)>0).boxed().toList();
+			return IntStream.range(0, datosprob3.getNumGrupos()).
+					filter(g-> capRestante.get(g)>0).
+					filter(g-> datosprob3.getAfinidad(indice,g)>0).
+					boxed().toList();
 	}
 
 	@Override
