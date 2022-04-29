@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
-public record Ej1_Vertex(Integer indice,List<Integer> capRestantes) 
-	implements VirtualVertex<Ej1_Vertex,Ej1_Edge,Integer>{
+public record Ej2_Vertex(Integer indice,List<Integer> capRestantes) 
+	implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 
-	public static Ej1_Vertex V_inicial() {
+	public static Ej2_Vertex V_inicial() {
 		
 		List<Integer> memos = datosEj1.getMemorias().stream().map(x->x.getCapacidad()).collect(Collectors.toList());
 		
@@ -37,7 +37,7 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 	}
 
 	@Override
-	public Ej1_Vertex neighbor(Integer a) {
+	public Ej2_Vertex neighbor(Integer a) {
 		
 			List<Integer> copia= List2.copy(capRestantes);
 		if(a!=-1) {
@@ -48,16 +48,16 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 		}
 	}
 
-	private static Ej1_Vertex of(int i, List<Integer> listCaps) {
-		return new Ej1_Vertex(i,listCaps);
+	private static Ej2_Vertex of(int i, List<Integer> listCaps) {
+		return new Ej2_Vertex(i,listCaps);
 	}
 
 	@Override
-	public Ej1_Edge edge(Integer a) {
-		return Ej1_Edge.of(this, this.neighbor(a), a);
+	public Ej2_Edge edge(Integer a) {
+		return Ej2_Edge.of(this, this.neighbor(a), a);
 	}
 	
-	public static Predicate<Ej1_Vertex> goal(){
+	public static Predicate<Ej2_Vertex> goal(){
 		return v->v.indice==datosEj1.getNumArchivos();
 	}
 

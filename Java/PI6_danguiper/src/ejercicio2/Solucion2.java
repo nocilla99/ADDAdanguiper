@@ -1,7 +1,9 @@
 package ejercicio2;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.jgrapht.GraphPath;
@@ -35,9 +37,15 @@ public class Solucion2 {
 
 		public String toString() {
 			System.out.println( "Valoracion total: "+v_TOTAL);
-			System.out.println("Candidatos("+cands.size()+"): "+cands.stream().map(c->c.id()).collect(Collectors.toList()));
+			System.out.println("Candidatos("+cands.size()+"):\n "+cands.stream().map(c->c.toString()+"\n").collect(Collectors.toList()));
 			Double coste=cands.stream().map(c->c.precio()).reduce(0.,Double::sum);
 			System.out.println("Coste: "+coste);
+			Set<String> set= new HashSet<String>();
+			for(int k=0;k<cands.size();k++) {
+				List<String> lc= datosEj2.getCandidato(k).cualidades();
+				set.addAll(lc);
+			}
+			System.out.println("Cubiertas: "+set);
 			return "";
 			}
 }

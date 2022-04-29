@@ -2,6 +2,8 @@ package ejercicio2;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import ejercicio2.datosEj2.TipoCandidato;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
@@ -36,9 +38,28 @@ implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 	
 	
 	public static Predicate<Ej2_Vertex> goal(){
-		return v->v.indice==datosEj2.getNumCandidatos();
+		return v->v.indice==datosEj2.getNumCandidatos() && presupuestoOK(v.alternativas) && vaciaLista(v.cualisPendientes,v.indice);
 	}
 	
+	private static boolean vaciaLista(List<String> listCua,Integer index) {
+		List<String> cuaIndiv= datosEj2.getCandidato(index-1).cualidades();
+		List<String> res =listCua.stream().filter(x->!cuaIndiv.contains(x)).collect(Collectors.toList());
+		return res.size()==0;
+		
+	}
+
+	private static boolean presupuestoOK(List<Integer> alternativas2) {
+		Double presupuesto= datosEj2.presupuesto;
+		
+		for(int elem=0;elem<alternativas2.size();elem++) {
+			presupuesto-= datosEj2.getCandidato(elem).precio()*alternativas2.get(elem);
+		}
+		
+		return presupuesto>=0;
+	}
+	
+	
+
 	@Override
 	public List<Integer> actions() {
 		List<Integer> la= List2.empty();
@@ -61,23 +82,15 @@ implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 		for (int i=0; i<alternativas.size();i++) {
 			if(alternativas.get(i)==1){
 				TipoCandidato persona= datosEj2.getCandidato(i);
-				res=res && datosEj2.getCandidato(indice).incompatibilidad().contains(persona.id());
+				res=res && !datosEj2.getCandidato(indice).incompatibilidad().contains(persona.id());
 				
 			}
 		}
-		if(res==false) return false;
-		//contiene alguna cualidad requerida
 		
-		res= res && cualisPendientes.stream().anyMatch(x->datosEj2.getCandidato(indice).cualidades().contains(x));
+		//-------------------------------------------
 		
-		//no hace el presupuesto a 0
-		if(res==false) return false;
 		
-		Double presupuesto=datosEj2.presupuesto;
-		for(int elem=0;elem<alternativas.size();elem++) {
-			presupuesto-= datosEj2.getCandidato(elem).precio()*alternativas.get(elem);
-		}
-		res=res&& (presupuesto>=0);
+	
 		return res;
 	}
 
@@ -86,9 +99,10 @@ implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
 		List<Integer>copiAlter= List2.copy(alternativas);
 		copiAlter.add(a);
 		if(a==1) {
-		List<String> copiaCualis= List2.copy(cualisPendientes);
-		copiaCualis.removeAll(datosEj2.getCandidato(indice).cualidades());	
-		return of(indice+1,	copiaCualis,copiAlter);
+			List<String> copiaCualis= cualisPendientes.stream()
+					.filter(x->!datosEj2.getCandidato(indice).cualidades().contains(x))
+					.collect(Collectors.toList());
+			return of(indice+1,	copiaCualis,copiAlter);
 		}
 		return of(indice+1,cualisPendientes(),copiAlter);
 	}

@@ -25,14 +25,26 @@ public class datosEj2 {
 			n=j[0].trim();
 			j=j[1].split(";");
 			
-			cualis=List.of(j[0].trim().split(","));
+			cualis=hazLizta(j[0].split(","));
 			prec=Double.valueOf(j[1].trim());
 			valo=Integer.valueOf(j[2].trim());			
-			incompts=List.of(j[3].trim().split(","));
+			incompts=hazLizta(j[3].trim().split(","));
 			
-			return new TipoCandidato(n, cualis, prec, valo, incompts);
+			return new TipoCandidato(n,cualis, prec, valo, incompts);
 		}
 		
+		public static List<String> hazLizta(String[] in){
+			List<String> res= new ArrayList<>();
+			for (String el : in) {
+				res.add(el.trim());
+			}
+			return res;
+			
+		}
+		
+		public String toString() {
+			return id+"; "+ cualidades.toString() +"; "+ precio +"; "+valoracion+"; "+incompatibilidad.toString();
+		}
 	}
 		
 	
@@ -63,8 +75,8 @@ public class datosEj2 {
 	
 	private static void setReq(String line) {
 		String[] p= line.split(":");
-		p=p[1].trim().split(",");
-		requeridas=List.of(p);
+		requeridas=TipoCandidato.hazLizta(p[1].trim().split(","));
+		
 	}
 	
 	private static void setPresu(String l) {

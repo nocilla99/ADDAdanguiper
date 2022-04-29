@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 
 public class heuristicaEj1 {
-	public static Double heuristic(Ej1_Vertex actual,Predicate<Ej1_Vertex> goal,Ej1_Vertex fin){
+	public static Double heuristic(Ej2_Vertex actual,Predicate<Ej2_Vertex> goal,Ej2_Vertex fin){
 		
 		if(actual.indice()>=datosEj1.getNumArchivos()) {
 			return 0.;

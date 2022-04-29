@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 
 import org.jgrapht.GraphPath;
@@ -7,10 +7,10 @@ import us.lsi.graphs.alg.AStar.AStarType;
 import us.lsi.graphs.virtual.EGraph;
 import us.lsi.graphs.virtual.SimpleVirtualGraph;
 
-public class testAStar1 {
+public class testAStar2 {
 
 	public static void main(String[] args) {
-		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada2.txt");
+		datosEj2.iniDatos("./fichero/PI6Ej2DatosEntrada1.txt");
 		
 		Ej2_Vertex v1= Ej2_Vertex.V_inicial();
 		
@@ -18,10 +18,10 @@ public class testAStar1 {
 		EGraph<Ej2_Vertex, Ej2_Edge> graph= 
 				SimpleVirtualGraph.sum(v1,Ej2_Vertex.goal(),e-> (double)e.weight());
 		
-		AStar<Ej2_Vertex, Ej2_Edge> ms= AStar.of(graph,heuristicaEj1::heuristic,AStarType.Max);
+		AStar<Ej2_Vertex, Ej2_Edge> ms= AStar.of(graph,heuristicaEj2::heuristic,AStarType.Max);
 		
 		GraphPath<Ej2_Vertex, Ej2_Edge> path = ms.search().get();
-		Solucion1 s =Solucion1.of(path);
+		Solucion2 s =Solucion2.of(path);
 		System.out.println(s);
 		
 		
