@@ -8,10 +8,10 @@ import java.util.stream.IntStream;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
-public record Ej2_Vertex(Integer indice,List<Integer> capRestantes) 
-	implements VirtualVertex<Ej2_Vertex,Ej2_Edge,Integer>{
+public record Ej1_Vertex(Integer indice,List<Integer> capRestantes) 
+	implements VirtualVertex<Ej1_Vertex,Ej1_Edge,Integer>{
 
-	public static Ej2_Vertex V_inicial() {
+	public static Ej1_Vertex V_inicial() {
 		
 		List<Integer> memos = datosEj1.getMemorias().stream().map(x->x.getCapacidad()).collect(Collectors.toList());
 		
