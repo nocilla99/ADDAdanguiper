@@ -20,13 +20,13 @@ public class Solucion1 {
 		public Solucion1() {
 		}
 
-		public static Solucion1 of(GraphPath<Ej2_Vertex,Ej2_Edge> gp) {
+		public static Solucion1 of(GraphPath<Ej1_Vertex,Ej1_Edge> gp) {
 			Solucion1 solu= new Solucion1();
 			solu.archivosAlmacenados=0;
 			solu.solucion= new TreeMap<>();
-			List<Ej2_Edge> ls= gp.getEdgeList();
+			List<Ej1_Edge> ls= gp.getEdgeList();
 			for(int i=0; i<ls.size();i++) {
-				Ej2_Edge e=ls.get(i);
+				Ej1_Edge e=ls.get(i);
 				Integer g=e.action();
 				solu.archivosAlmacenados += 1;
 				if(solu.solucion.containsKey(g)) {
