@@ -3,7 +3,9 @@ package ejercicio3;
 public class test {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		datosEj3.iniDatos("./fichero/PI6Ej3DatosEntrada1.txt");
+		System.out.println(datosEj3.componentes);
+		System.out.println(datosEj3.productos);
 
 	}
 

@@ -1,7 +1,7 @@
 package ejercicio1;
 
 
-import org.jgrapht.GraphPath;
+import org.jgrapht.*;
 import us.lsi.graphs.alg.*;
 import us.lsi.graphs.alg.AStar.AStarType;
 import us.lsi.graphs.virtual.EGraph;
@@ -10,9 +10,9 @@ import us.lsi.graphs.virtual.SimpleVirtualGraph;
 public class testAStar1 {
 
 	public static void main(String[] args) {
-		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada2.txt");
+		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada1.txt");
 		
-		Ej2_Vertex v1= Ej1_Vertex.V_inicial();
+		Ej1_Vertex v1= Ej1_Vertex.V_inicial();
 		
 		
 		EGraph<Ej1_Vertex, Ej1_Edge> graph= 

@@ -1,7 +1,7 @@
 package ejercicio2;
 
-import org.jgrapht.GraphPath;
 
+import org.jgrapht.GraphPath;
 import us.lsi.graphs.alg.*;
 import us.lsi.graphs.alg.DynamicProgramming.PDType;
 import us.lsi.graphs.virtual.EGraph;

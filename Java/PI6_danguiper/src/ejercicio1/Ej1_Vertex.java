@@ -28,8 +28,8 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 		}
 		 List<Integer> la= new ArrayList<>();
 		 la.add(-1);
-		 la.addAll(IntStream.range(-1, datosEj1.getNumMemorias())
-				.filter(x->x!=-1).filter(memos->datosEj1.getMemoria(memos).getTamMax()>=datosEj1.getArchivo(indice).getPeso()
+		 la.addAll(IntStream.range(0, datosEj1.getNumMemorias())
+				.filter(memos->datosEj1.getMemoria(memos).getTamMax()>=datosEj1.getArchivo(indice).getPeso()
 						&& capRestantes.get(memos)>=datosEj1.getArchivo(indice).getPeso())
 				.boxed().toList());
 		 
@@ -37,7 +37,7 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 	}
 
 	@Override
-	public Ej2_Vertex neighbor(Integer a) {
+	public Ej1_Vertex neighbor(Integer a) {
 		
 			List<Integer> copia= List2.copy(capRestantes);
 		if(a!=-1) {
@@ -48,16 +48,16 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 		}
 	}
 
-	private static Ej2_Vertex of(int i, List<Integer> listCaps) {
-		return new Ej2_Vertex(i,listCaps);
+	private static Ej1_Vertex of(int i, List<Integer> listCaps) {
+		return new Ej1_Vertex(i,listCaps);
 	}
 
 	@Override
-	public Ej2_Edge edge(Integer a) {
-		return Ej2_Edge.of(this, this.neighbor(a), a);
+	public Ej1_Edge edge(Integer a) {
+		return Ej1_Edge.of(this, this.neighbor(a), a);
 	}
 	
-	public static Predicate<Ej2_Vertex> goal(){
+	public static Predicate<Ej1_Vertex> goal(){
 		return v->v.indice==datosEj1.getNumArchivos();
 	}
 

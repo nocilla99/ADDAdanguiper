@@ -49,6 +49,6 @@ public class Solucion1 {
 
 		public String toString() {;
 			return solucion.entrySet().stream().map(e->IndMem(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n"));
-			}
+		}
 }
 	
