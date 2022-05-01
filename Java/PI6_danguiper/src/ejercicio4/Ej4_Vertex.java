@@ -32,7 +32,7 @@ public static Ej4_Vertex V_inicial() {
 		 Elemento elemento=datosEj4.getElemento(indice);
 		 
 		 la.add(-1);
-		 la.addAll(IntStream.range(0, datosEj4.getNumContenedores())
+		 la.addAll(IntStream.range(0, capRestantes.size())
 				.filter(memos->capRestantes.get(memos)-elemento.tamaño()>=0
 						&& elemento.tipos().contains(datosEj4.getContenedor(memos).tipo()))
 				.boxed().toList());

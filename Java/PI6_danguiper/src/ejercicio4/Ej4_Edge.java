@@ -7,7 +7,7 @@ implements SimpleEdgeAction<Ej4_Vertex,Integer>{
 
 	public static Ej4_Edge of(Ej4_Vertex source,Ej4_Vertex target,Integer action) {
 		//ver si esa memoria se llena o no -> peso
-		long  memsllenas= source.capRestantes().stream().filter(cnt->cnt==0).count();
+		long  memsllenas= source.capRestantes().stream().filter(ele->ele==0).count();
 		return new Ej4_Edge(source,target,action,Double.valueOf(memsllenas));
 	}
 }

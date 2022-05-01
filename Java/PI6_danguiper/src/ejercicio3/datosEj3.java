@@ -53,12 +53,28 @@ public class datosEj3{
 			
 			return new TipoProducto(id, precio, componentes, maxUnidades);
 			
-		}
+		}		
 	}
 	public record dupla(String nombreComp,int cantidad) {}
 	public record DuplaComponente(int prod,int manual) {}
 	
+	public static int getTiempoManual(TipoProducto p) {
+		int i=0;
+		for (dupla c : p.componentes()) {
+			i+=c.cantidad*(getTiempos(c.nombreComp).manual);
+		}
+		
+		return i;
+	}
 	
+	public static int getTiempoProduccion(TipoProducto p) {
+		int i=0;
+		for (dupla c : p.componentes()) {
+			i+=c.cantidad*(getTiempos(c.nombreComp).prod);
+		}
+		
+		return i;
+	}
 	//-------
 	public static List<dupla> hazLizta(String[] in){
 		List<dupla> res= new ArrayList<>();
@@ -105,13 +121,10 @@ public class datosEj3{
 		
 	}
 	
-	public static Integer getProducots() {
+	public static Integer getProductos() {
 		return productos.size();
 	}
 
-	public static Integer getMaxProductos() {
-		return productos.stream().map(t->t.maxUnidades).reduce(0,Integer::sum);
-	}
 
 	
 	

@@ -2,12 +2,20 @@ package ejercicio3;
 
 import java.util.function.Predicate;
 
+import ejercicio3.datosEj3.TipoProducto;
+
 public class heuristicaEj3 {
 	public static Double heuristic(Ej3_Vertex actual,Predicate<Ej3_Vertex> goal,Ej3_Vertex fin){
-		Integer res= actual.alternativasCogidas().stream().reduce(0, Integer::sum);
-		Integer total= datosEj3.getMaxProductos();
 		
-		return (double) (total-res);
+		Double mejor= datosEj3.productos.stream().map(x->x.maxUnidades()*x.precio()).reduce(0., Double::sum);
+		
+		Double restante=0.;
+		for(int i=actual.indice();i<datosEj3.getProductos();i++) {
+			TipoProducto p=datosEj3.getProducto(i);
+			restante+=(p.precio()*p.maxUnidades());
+		}
+		
+		return mejor-restante;
 		
 	}
 }

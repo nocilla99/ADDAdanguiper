@@ -38,12 +38,16 @@ public class Solucion4 {
 		
 	}
 	
-	public String IndMem(Integer indMas1) {
-		String r=(indMas1==0)? "No almacenados": "Contenedor "+indMas1.toString();
-		return r;
-	}
 
 	public String toString() {;
-		return solucion.entrySet().stream().map(e->IndMem(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n"));
+		return solucion.entrySet().stream().filter(e->e.getKey()!=-1)
+				.map(e->"Contenedor "+ (e.getKey()+1)+" ("+datosEj4.getContenedor(e.getKey()).capacidad()+"): "+e.getValue()+" Tamaño ocupado: "+sumatams(e.getValue()))
+				.collect(Collectors.joining("\n"))+"";
+	}
+
+	private int sumatams(List<String> listaEls) {
+		
+		return datosEj4.elementos.stream().filter(x->listaEls.contains(x.nombre()))
+				.map(x->x.tamaño()).reduce(0, Integer::sum);
 	}
 }

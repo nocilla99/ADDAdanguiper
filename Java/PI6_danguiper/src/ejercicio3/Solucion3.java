@@ -1,10 +1,10 @@
 package ejercicio3;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import org.jgrapht.GraphPath;
+
+import ejercicio3.datosEj3.TipoProducto;
 
 
 public class Solucion3 {
@@ -13,36 +13,33 @@ public class Solucion3 {
 		}
 		
 		public double ingresos;
-		public Map<Integer,Integer> TipoCantidad;
+		public List<Integer> CantidadProd;
 	
 		
 		public static Solucion3 of(GraphPath<Ej3_Vertex,Ej3_Edge> gp) {
 			Solucion3 spr3= new Solucion3();
 			spr3.ingresos=0;
-			spr3.TipoCantidad= new HashMap<>();
+			spr3.CantidadProd= new ArrayList<>();
 			List<Ej3_Edge> ls= gp.getEdgeList();
 			for(int i=0; i<ls.size();i++) {
 				Ej3_Edge e=ls.get(i);
-				Integer alternativa=e.action();
-				
-				if(spr3.TipoCantidad.containsKey(alternativa)) {
-					spr3.TipoCantidad.put(alternativa,spr3.TipoCantidad.get(alternativa)+1);	
-				}else {
-					spr3.TipoCantidad.put(alternativa,0);
-				}	
-				
+				Integer cantidad=e.action();
+				spr3.ingresos+=datosEj3.getProducto(i).precio()*cantidad;
+				spr3.CantidadProd.add(cantidad);
 			}
 			return spr3;
 			
 		}
 
-		public String IndMem(Integer indMas1) {
-			String r=(indMas1==0)? "No almacenados": "Memoria "+indMas1.toString();
-			return r;
-		}
 
-		public String toString() {;
-			return "Ingresos: "+ingresos+"\n"+TipoCantidad.entrySet().stream().map(e->IndMem(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n"));
+		public String toString() {
+			String res= "Ingresos : "+ingresos+"\n";
+			for(int i=0;i<datosEj3.getProductos();i++) {
+				TipoProducto p = datosEj3.getProducto(i);
+				res+= p.id()+" ("+p.precio()+"€): "+CantidadProd.get(i)+"\n";
+			}
+			
+			return res;
 		}
 }
 	

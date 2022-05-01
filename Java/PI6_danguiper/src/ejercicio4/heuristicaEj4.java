@@ -14,6 +14,7 @@ public class heuristicaEj4 {
 		long  memsllenas= actual.capRestantes().stream().filter(cnt->cnt==0).count(); 
 		int h= (datosEj4.getNumContenedores()-(int)memsllenas);
 		return Double.valueOf(h);
+		//return (double) datosEj4.getNumElems()-actual.indice();
 		
 	}
 }

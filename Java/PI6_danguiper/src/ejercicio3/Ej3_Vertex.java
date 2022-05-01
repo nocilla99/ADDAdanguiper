@@ -4,27 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
-
-import ejercicio3.datosEj3.DuplaComponente;
 import ejercicio3.datosEj3.TipoProducto;
-import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 
-public record Ej3_Vertex(int indice, List<Integer> alternativasCogidas) 
+public record Ej3_Vertex(int indice, int TProdRestante,int TManRestante) 
 implements VirtualVertex<Ej3_Vertex,Ej3_Edge,Integer>{
 	//Indice de producto 
-	//lista de alternativas cogidas tamaño P
+	//tprod
+	//tman
 
-	public static Ej3_Vertex of(int indice, List<Integer> alternativas){
-		return new Ej3_Vertex(indice, alternativas);
+	public static Ej3_Vertex of(int indice,int tp,int tm){
+		return new Ej3_Vertex(indice,tp,tm);
 	}
 	
 	public static Ej3_Vertex V_inicial() {
-		return of(0,List2.empty());
+		return of(0,datosEj3.TiempoMaxProd,datosEj3.TiempoMaxManual);
 	}
 	
 	public static Predicate<Ej3_Vertex> goal(){
-		return v->v.indice==datosEj3.getMaxProductos();
+		return v->v.indice>=datosEj3.getProductos();
 	}
 	
 	
@@ -32,40 +30,35 @@ implements VirtualVertex<Ej3_Vertex,Ej3_Edge,Integer>{
 	@Override
 	public List<Integer> actions() {
 		List<Integer> la= new ArrayList<>();
-		if(indice==datosEj3.getMaxProductos()) {
+		if(indice>=datosEj3.getProductos()) {
 			return la;
 		}
-		la.add(-1);
-		la.addAll(IntStream.range(0, datosEj3.getProducots())
+		la.addAll(IntStream.range(0,datosEj3.getProducto(indice).maxUnidades()+1)
 				.filter(x->aplicable(x))
 				.boxed().toList());
 		 
 		 return la;
 	}
 
-	private Boolean aplicable(int indiP) {
-		TipoProducto prod=datosEj3.getProducto(indiP);
+	private Boolean aplicable(int cantidad) {
+		TipoProducto prod=datosEj3.getProducto(indice);
+		int tp=datosEj3.getTiempoProduccion(prod);
+		int tm=datosEj3.getTiempoManual(prod);
 		
-		Boolean res=alternativasCogidas.get(indiP)<prod.maxUnidades();
-		int tp=0,tm=0;
-		for(int i=0;i<prod.componentes().size();i++) {//i=0
-			String nombreComponente= prod.componentes().get(i).nombreComp();
-			
-			DuplaComponente tiemposComponente= datosEj3.getTiempos(nombreComponente);
-			Integer cantidadComponente= prod.componentes().get(i).cantidad();
-			Integer numeroProds=alternativasCogidas.get(i);
-			
-			tp=tp+(tiemposComponente.prod()*cantidadComponente)*numeroProds;
-			tm=tm+(tiemposComponente.manual()*cantidadComponente)*numeroProds;
-		}
-		res=res&& ( datosEj3.TiempoMaxProd>=tp )  && (datosEj3.TiempoMaxManual>=tm);
+		
+		Boolean res= (TProdRestante-(tp*cantidad)>=0 )  && (TManRestante-(tm*cantidad)>=0);
 		return res;
 	}
 
 	@Override
 	public Ej3_Vertex neighbor(Integer a) {
-		alternativasCogidas.set(a, alternativasCogidas.get(a)+1);
-		return of(indice+1,alternativasCogidas);
+		
+		TipoProducto prod=datosEj3.getProducto(indice);
+		int tp=datosEj3.getTiempoProduccion(prod);
+		int tm=datosEj3.getTiempoManual(prod);
+		
+		//double g=gananciasAcumuladas+datosEj3.getProducto(indice).precio()*a;
+		return of(indice+1,TProdRestante-(tp*a),TManRestante-(tm*a));
 	}
 
 	@Override

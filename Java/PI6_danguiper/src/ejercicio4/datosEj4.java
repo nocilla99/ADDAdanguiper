@@ -28,7 +28,6 @@ public class datosEj4 {
 			Integer tam= Integer.valueOf(f[0].trim());
 			List<String> tipos= hazLista(f[1].split(","));
 			
-			
 			return new Elemento(id,tam,tipos);
 		}
 				
@@ -82,4 +81,5 @@ public class datosEj4 {
 		}
 		
 	}
+	
 }
