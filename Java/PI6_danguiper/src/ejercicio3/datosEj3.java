@@ -1,6 +1,7 @@
 package ejercicio3;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,13 +120,12 @@ public class datosEj3{
 			}
 		}
 		
+		productos=productos.stream().sorted(Comparator.comparing(TipoProducto::precio)).collect(Collectors.toList());
+		
 	}
 	
 	public static Integer getProductos() {
 		return productos.size();
-	}
-
-
-	
+	}	
 	
 }

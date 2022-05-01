@@ -16,7 +16,7 @@ public class testBT1 {
 				SimpleVirtualGraph.sum(v1,Ej1_Vertex.goal(),e-> (double)e.weight());
 		
 		BackTracking<Ej1_Vertex, Ej1_Edge, Integer> bt1=
-				BackTracking.of(grafo,heuristicaEj1::heuristic,null, BTType.Max);
+				BackTracking.of(grafo,heuristicaEj1::heuristic,Solucion1::of, BTType.Max);
 															   //greedy?
 		GraphPath<Ej1_Vertex,Ej1_Edge> S= bt1.optimalPath().get();
 		Solucion1 sol= Solucion1.of(S);

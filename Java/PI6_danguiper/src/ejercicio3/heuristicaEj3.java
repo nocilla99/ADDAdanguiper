@@ -7,7 +7,6 @@ import ejercicio3.datosEj3.TipoProducto;
 public class heuristicaEj3 {
 	public static Double heuristic(Ej3_Vertex actual,Predicate<Ej3_Vertex> goal,Ej3_Vertex fin){
 		
-		Double mejor= datosEj3.productos.stream().map(x->x.maxUnidades()*x.precio()).reduce(0., Double::sum);
 		
 		Double restante=0.;
 		for(int i=actual.indice();i<datosEj3.getProductos();i++) {
@@ -15,7 +14,9 @@ public class heuristicaEj3 {
 			restante+=(p.precio()*p.maxUnidades());
 		}
 		
-		return mejor-restante;
+		return restante;
+		
+		
 		
 	}
 }

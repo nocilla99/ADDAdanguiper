@@ -10,8 +10,8 @@ import us.lsi.graphs.virtual.VirtualVertex;
 public record Ej3_Vertex(int indice, int TProdRestante,int TManRestante) 
 implements VirtualVertex<Ej3_Vertex,Ej3_Edge,Integer>{
 	//Indice de producto 
-	//tprod
-	//tman
+	//Tiempo de produccion que queda por usar
+	//Tiempo manual que queda por usar
 
 	public static Ej3_Vertex of(int indice,int tp,int tm){
 		return new Ej3_Vertex(indice,tp,tm);

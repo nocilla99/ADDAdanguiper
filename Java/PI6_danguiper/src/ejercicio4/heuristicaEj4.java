@@ -11,8 +11,8 @@ public class heuristicaEj4 {
 		}	
 		
 		//total de contenedores - los que estan a 0 de cap restante
-		long  memsllenas= actual.capRestantes().stream().filter(cnt->cnt==0).count(); 
-		int h= (datosEj4.getNumContenedores()-(int)memsllenas);
+		long  contllenas= actual.capRestantes().stream().filter(cnt->cnt==0).count(); 
+		int h= (datosEj4.getNumContenedores()-(int)contllenas);
 		return Double.valueOf(h);
 		//return (double) datosEj4.getNumElems()-actual.indice();
 		
