@@ -10,7 +10,6 @@ public class heuristicaEj4 {
 			return 0.;
 		}	
 		
-		//total de contenedores - los que estan a 0 de cap restante
 		long  contllenas= actual.capRestantes().stream().filter(cnt->cnt==0).count(); 
 		int h= (datosEj4.getNumContenedores()-(int)contllenas);
 		return Double.valueOf(h);

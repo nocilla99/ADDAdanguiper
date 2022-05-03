@@ -80,7 +80,7 @@ public class datosEj4 {
 				}
 			}
 		}
-		contenedores=contenedores.stream().sorted(Comparator.comparing(Contenedor::capacidad).reversed()).collect(Collectors.toList());
+		//elementos=elementos.stream().sorted(Comparator.comparing(Elemento::tamaño).reversed()).collect(Collectors.toList());
 	}
 	
 }
