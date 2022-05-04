@@ -10,7 +10,7 @@ import us.lsi.graphs.virtual.SimpleVirtualGraph;
 public class testPDR4 {
 
 	public static void main(String[] args) {
-			datosEj4.iniDatos("./fichero/PI6Ej4DatosEntrada1.txt");
+			datosEj4.iniDatos("./fichero/PI6Ej4DatosEntrada2.txt");
 			Ej4_Vertex v1= Ej4_Vertex.V_inicial();
 			
 			

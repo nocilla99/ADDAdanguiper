@@ -10,7 +10,7 @@ import us.lsi.graphs.virtual.SimpleVirtualGraph;
 public class testAStar1 {
 
 	public static void main(String[] args) {
-		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada1.txt");
+		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada2.txt");
 		
 		Ej1_Vertex v1= Ej1_Vertex.V_inicial();
 		

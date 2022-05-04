@@ -15,8 +15,6 @@ public class Solucion1 {
 		public int archivosAlmacenados;
 		public Map<Integer,List<String>> solucion;
 	
-		
-
 		public Solucion1() {
 		}
 
