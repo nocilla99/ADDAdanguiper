@@ -1,7 +1,6 @@
 package ejercicio4;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import us.lsi.common.Files2;
@@ -80,7 +79,6 @@ public class datosEj4 {
 				}
 			}
 		}
-		//elementos=elementos.stream().sorted(Comparator.comparing(Elemento::tamaño).reversed()).collect(Collectors.toList());
 	}
 	
 }
