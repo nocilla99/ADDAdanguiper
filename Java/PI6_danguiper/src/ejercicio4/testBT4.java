@@ -15,9 +15,10 @@ public class testBT4 {
 				SimpleVirtualGraph.sum(v1,Ej4_Vertex.goal(),e-> (double)e.weight());
 		
 		BackTracking<Ej4_Vertex, Ej4_Edge, Solucion4> bt1=
-				BackTracking.of(grafo,heuristicaEj4::heuristic, Solucion4::of, BTType.Max);
+				BackTracking.of(grafo,heuristicaEj4::heuristic, Solucion4::of, BTType.Min);
 		bt1.search();
-		System.out.println(bt1.getSolution().get());
+		System.out.println("Hay solucion? "+bt1.getSolution().isPresent());
+		System.out.println("Solucion: \n"+bt1.getSolution().get());
 	}
 
 }

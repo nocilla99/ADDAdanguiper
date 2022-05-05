@@ -7,7 +7,7 @@ import us.lsi.graphs.virtual.SimpleVirtualGraph;
 public class testBT2 {
 	
 	public static void main(String[] args) {
-		datosEj2.iniDatos("./fichero/PI6Ej2DatosEntrada1.txt");
+		datosEj2.iniDatos("./fichero/PI6Ej2DatosEntrada2.txt");
 		
 		Ej2_Vertex v1= Ej2_Vertex.V_inicial();
 		

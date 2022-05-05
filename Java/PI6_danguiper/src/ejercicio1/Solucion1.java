@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import org.jgrapht.GraphPath;
 
 public class Solucion1 {
-	
-	
 		
 		public int archivosAlmacenados;
 		public Map<Integer,List<String>> solucion;
