@@ -33,7 +33,7 @@ implements VirtualVertex<Ej3_Vertex,Ej3_Edge,Integer>{
 		if(indice>=datosEj3.getProductos()) {
 			return la;
 		}
-		la.addAll(IntStream.range(0,datosEj3.getProducto(indice).maxUnidades()+1)
+		la.addAll(IntStream.range(0,datosEj3.getProducto(indice).maxUnidades()+1) 
 				.filter(x->aplicable(x))
 				.boxed().toList());
 		 

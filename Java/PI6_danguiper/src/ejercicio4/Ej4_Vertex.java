@@ -37,6 +37,8 @@ public static Ej4_Vertex V_inicial() {
 						&& elemento.tipos().contains(datosEj4.getContenedor(c).tipo()))
 				.boxed().toList());
 		 
+		 
+		 
 		 return la;
 	}
 

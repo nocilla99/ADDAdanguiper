@@ -21,10 +21,11 @@ public class Solucion1 {
 			solu.archivosAlmacenados=0;
 			solu.solucion= new TreeMap<>();
 			List<Ej1_Edge> ls= gp.getEdgeList();
+			
 			for(int i=0; i<ls.size();i++) {
 				Ej1_Edge e=ls.get(i);
 				Integer g=e.action();
-				solu.archivosAlmacenados += 1;
+				solu.archivosAlmacenados += (g!=-1)?1:0;
 				if(solu.solucion.containsKey(g)) {
 					solu.solucion.get(g).add(datosEj1.getArchivo(i).nombre());	
 				}else {
@@ -43,7 +44,8 @@ public class Solucion1 {
 			return r;
 		}
 
-		public String toString() {;
+		public String toString() {
+			System.out.println(archivosAlmacenados);
 			return solucion.entrySet().stream().map(e->IndMem(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n"));
 		}
 }

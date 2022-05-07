@@ -19,9 +19,8 @@ public record Ej1_Vertex(Integer indice,List<Integer> capRestantes)
 	}
 	
 	
-	
 	@Override
-	public List<Integer> actions() {
+	public List<Integer> actions() {//opciones para el vertice siguiente
 		
 		if(indice>=datosEj1.getNumArchivos()) {
 			return List2.empty();

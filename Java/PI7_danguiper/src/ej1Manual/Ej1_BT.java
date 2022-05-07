@@ -84,7 +84,7 @@ public class Ej1_BT {
 		}else {
 			List<Integer> alternativas = Ej1_BT.estado.vertice.actions();
 			for(Integer a:alternativas) {	
-				Double cota = Ej1_BT.estado.valorAcum+Heuristica.cota(Ej1_BT.estado.vertice,a);
+				int cota = Ej1_BT.estado.valorAcum+Heuristica.cota(Ej1_BT.estado.vertice,a);
 				if(cota < Ej1_BT.maxValue) continue;
 				Ej1_BT.estado.forward(a);
 				btm();  

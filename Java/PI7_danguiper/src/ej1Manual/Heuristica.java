@@ -13,11 +13,11 @@ private static record Heu_Ej1(Integer indice, List<Integer> CapsRestantes) {
 			return new Heu_Ej1(index, caps);
 		}
 		//--------------------------------------------------------------------------mirar esto
-		public Double heuristicAction() {
+		public int heuristicAction() {
 			if(indice>=datosEj1.getNumArchivos()) {
-				return 0.;
+				return 0;
 			}
-			return (double)datosEj1.getNumArchivos()-indice;
+			return datosEj1.getNumArchivos()-indice;
 		}
 		
 		public Heu_Ej1 vecino(Integer a) {
@@ -33,18 +33,18 @@ private static record Heu_Ej1(Integer indice, List<Integer> CapsRestantes) {
 		
 	}
 
-	public static Double cota(Ej1Problem vertice, Integer a) {
+	public static Integer cota(Ej1Problem vertice, Integer a) {
 		Ej1Problem v2= vertice.vecino(a);
-		Double elem= (a!=-1)?1.:0.;
+		int elem= (a!=-1)?1:0;
 		return elem+heuristica(v2);
 	}
 
-	private static Double heuristica(Ej1Problem v1) {
+	private static Integer heuristica(Ej1Problem v1) {
 		Heu_Ej1 v= Heu_Ej1.of(v1.indice(),v1.capRestantes());
-		Double r=0.;
+		int r=0;
 		while(v.indice<datosEj1.getNumArchivos()) {
-			Double a= v.heuristicAction();
-			int accion= Integer.valueOf(a.toString());
+			int accion= v.heuristicAction();
+		
 			Double elem= (accion!=-1)?1.:0.;
 			r+=elem;
 			v=v.vecino(accion);
