@@ -1,6 +1,7 @@
 package ej1Manual;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -97,7 +98,9 @@ public class Ej1_BT {
 		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada1.txt");
 		List<Integer> caps= datosEj1.memorias.stream().map(x->x.capacidad()).collect(Collectors.toList());
 		Ej1_BT.btm(caps);
-		System.out.println(Ej1_BT.soluciones);
+		//System.out.println(Ej1_BT.soluciones);
+		Solucion1Man sol1=Ej1_BT.soluciones.stream().sorted(Comparator.comparing(Solucion1Man::valor).reversed()).collect(Collectors.toList()).get(0);
+		System.out.println(sol1.toString());
 	}
 
 }

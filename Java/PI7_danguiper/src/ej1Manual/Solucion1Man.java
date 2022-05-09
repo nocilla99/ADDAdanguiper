@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import ejercicio1.datosEj1;
 
 public record Solucion1Man(Integer valor,List<Integer> acciones,Map<Integer,List<String>> s) {	
@@ -30,4 +32,13 @@ public record Solucion1Man(Integer valor,List<Integer> acciones,Map<Integer,List
 				}
 				return new Solucion1Man(valor,acciones,res);
 	}
+			public String IndMem(Integer indMas1) {
+				String r=(indMas1==0)? "No almacenados": "Memoria "+indMas1.toString();
+				return r;
+			}
+
+			public String toString() {;
+				return "Archivos almacenados "+valor+"\n"+s.entrySet().stream().map(e->IndMem(e.getKey()+1)+": "+e.getValue()).collect(Collectors.joining("\n"));
+			}
+			
 }

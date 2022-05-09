@@ -42,12 +42,17 @@ private static record Heu_Ej1(Integer indice, List<Integer> CapsRestantes) {
 	private static Integer heuristica(Ej1Problem v1) {
 		Heu_Ej1 v= Heu_Ej1.of(v1.indice(),v1.capRestantes());
 		int r=0;
-		while(v.indice<datosEj1.getNumArchivos()) {
-			int accion= v.heuristicAction();
+		int ind= v.indice;
+		while(ind<datosEj1.getNumArchivos()) {
+			/*int accion= v.heuristicAction();
 		
 			Double elem= (accion!=-1)?1.:0.;
 			r+=elem;
-			v=v.vecino(accion);
+			//-----------------------El error esta aqui
+			
+			v=v.vecino(accion);*/
+			r+=1;
+			ind++;
 		}
 		return r;
 	}
