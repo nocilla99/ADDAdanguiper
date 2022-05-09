@@ -12,8 +12,7 @@ public class heuristicaEj2 {
 		for(int i=actual.indice();i<datosEj2.getNumCandidatos();i++) {
 			valos+=datosEj2.getCandidato(i).valoracion();
 		}
-		Double h= (datosEj2.getNumCandidatos()*5-(double)valos);
-		return h;
+		return (double)valos;
 		
 	}
 }
