@@ -14,7 +14,6 @@ public record Solucion2Man(List<String> seleccionados,double coste,int valoracio
 				List<String> elegidos= new ArrayList<>();
 				double coste=0.;
 				
-				
 				for(int i=0; i< acciones.size();i++) {
 					Integer a = acciones.get(i);
 					TipoCandidato persona= datosEj2.getCandidato(i);

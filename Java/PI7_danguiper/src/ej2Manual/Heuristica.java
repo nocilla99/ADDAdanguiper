@@ -26,6 +26,7 @@ private static record Heu_Ej2(Integer indice, List<String> cualidadesRestantes,L
 			ind++;
 		}
 		return r;
+		
 	}
 
 }

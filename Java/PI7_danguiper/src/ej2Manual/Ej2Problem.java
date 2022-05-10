@@ -38,6 +38,7 @@ public record Ej2Problem(int indice,List<String> cualisPendientes, List<Integer>
 			return la;
 	}
 	
+	
 	private boolean aplicable(int escogido) { //idem a vertex 
 			
 			boolean res=true;

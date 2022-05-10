@@ -125,9 +125,7 @@ public class Ej2_BT {
 		List<String> res =listCua.stream().filter(x->!cuaIndiv.contains(x)).collect(Collectors.toList());
 		return res.size()==0;
 		
-	}
-	
-	
+	}	
 	public static void main(String[] args) {
 		datosEj2.iniDatos("./fichero/PI6Ej2DatosEntrada2.txt");
 		List<String> caps= datosEj2.requeridas;

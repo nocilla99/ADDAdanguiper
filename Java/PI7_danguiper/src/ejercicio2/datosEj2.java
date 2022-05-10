@@ -95,7 +95,5 @@ public class datosEj2 {
 		candidatos.sort(Comparator.comparing(TipoCandidato::precio).reversed());
 		
 	}
-
-	
 	
 }
