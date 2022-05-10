@@ -1,6 +1,7 @@
 package ejercicio2;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,7 +92,7 @@ public class datosEj2 {
 		for(int di=2; di<lineas.size();di++) {
 			candidatos.add(TipoCandidato.create(lineas.get(di)));
 		}
-		
+		candidatos.sort(Comparator.comparing(TipoCandidato::precio).reversed());
 		
 	}
 
