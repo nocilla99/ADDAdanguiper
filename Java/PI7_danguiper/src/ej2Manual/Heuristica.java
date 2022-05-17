@@ -19,13 +19,15 @@ private static record Heu_Ej2(Integer indice, List<String> cualidadesRestantes,L
 
 	private static Integer heuristica(Ej2Problem v1) { //mejor camino desde v1.indice hasta final  (funcion objetivo)
 		Heu_Ej2 v= Heu_Ej2.of(v1.indice(),v1.cualisPendientes(),v1.alternativas());
-		int r=0;
-		int ind= v.indice;
-		while(ind<datosEj2.getNumCandidatos()) {  //copiado de heurisitcaEj.java
-			r+=datosEj2.getCandidato(ind).valoracion();
-			ind++;
+		int valos=0;
+		if(v.indice()>=datosEj2.getNumCandidatos()) {
+			return 0;
 		}
-		return r;
+		for(int i=v.indice();i<datosEj2.getNumCandidatos();i++) {
+			valos+=datosEj2.getCandidato(i).valoracion();
+		}
+		int h= (datosEj2.getNumCandidatos()*5-valos);
+		return h;
 		
 	}
 

@@ -9,12 +9,13 @@ import us.lsi.common.List2;
 import us.lsi.common.Preconditions;
 
 public record Ej2Problem(int indice,List<String> cualisPendientes, List<Integer> alternativas) {  //COMO VERTEX
-	static Ej2Problem of(int indice,List<String> cualisPendientes, List<Integer> alternativas) {
+	 
+	public static Ej2Problem of(int indice,List<String> cualisPendientes, List<Integer> alternativas) {
 		Preconditions.checkArgument(indice>=0 && indice<=datosEj2.getNumCandidatos(),
 				"indice: "+indice+" CualisPEndientes: "+cualisPendientes+" Lista alternativas"+alternativas);
 		return new Ej2Problem(indice,cualisPendientes, alternativas);
 	}
-	static Ej2Problem inicio(List<String>cualis) {return new Ej2Problem(0, cualis, new ArrayList<Integer>());}
+	public static Ej2Problem inicio(List<String>cualis) {return of(0, cualis, new ArrayList<Integer>());}
 	
 	public Ej2Problem vecino(Integer a) { //idem a vertex
 		List<Integer>copiAlter= List2.copy(alternativas);
@@ -46,16 +47,18 @@ public record Ej2Problem(int indice,List<String> cualisPendientes, List<Integer>
 				return res;	
 			}
 			//no es incompt
-			
+			double sueldo= datosEj2.getCandidato(escogido).precio();
 			for (int i=0; i<alternativas.size();i++) {
 				if(alternativas.get(i)==1){
 					TipoCandidato persona= datosEj2.getCandidato(i);
 					res=res && !datosEj2.getCandidato(indice).incompatibilidad().contains(persona.id());
+					sueldo+= persona.precio();
 				}
 			}
+			
+			res = res&& sueldo<=datosEj2.presupuesto;
 		
 		return res ;
 	}
-	
 	
 }

@@ -80,20 +80,8 @@ public class Ej2_BT {
 			Integer value= estado.valorAcum;
 			if(value> Ej2_BT.maxValue) {
 				Ej2_BT.maxValue=value;
-				List<Integer> alternativas= Ej2_BT.estado.acciones;
-				//---------------------------------------------
-				//construir lista de cuialidades
-				/*
-				List<String>cualidadesCogidas= new ArrayList<>();
-				for(int i=0;i<alternativas.size();i++) {
-					if(alternativas.get(i)==1) cualidadesCogidas.addAll(datosEj2.getCandidato(i).cualidades());
-				}
-				
-				if(PresuOk(alternativas)&& vaciaLista(cualidadesCogidas))Ej2_BT.soluciones.add(Ej2_BT.estado.solucion());
-				*/
-				//--------------------------------------------
 				Ej2Problem n = Ej2_BT.estado.vertice;
-				if(PresuOk(alternativas)&& vaciaLista(n.cualisPendientes(),n.indice()))Ej2_BT.soluciones.add(Ej2_BT.estado.solucion());
+				if(vaciaLista(n.cualisPendientes(),n.indice()))Ej2_BT.soluciones.add(Ej2_BT.estado.solucion());
 			}
 			
 		}else {
@@ -116,10 +104,6 @@ public class Ej2_BT {
 		return (presupuesto>=0.);
 	}
 	
-	/*private static boolean vaciaLista(List<String> CuaCogidas) {
-		int res=(int) datosEj2.requeridas.stream().filter(x->!CuaCogidas.contains(x)).count();
-		return res==0;
-	}*/
 	private static boolean vaciaLista(List<String> listCua,Integer index) {
 		List<String> cuaIndiv= datosEj2.getCandidato(index-1).cualidades();
 		List<String> res =listCua.stream().filter(x->!cuaIndiv.contains(x)).collect(Collectors.toList());
