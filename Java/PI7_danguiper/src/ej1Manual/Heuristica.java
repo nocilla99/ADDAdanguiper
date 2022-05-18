@@ -2,7 +2,7 @@ package ej1Manual;
 
 import java.util.List;
 
-import ejercicio1.datosEj1;
+import datos.datosEj1;
 
 public class Heuristica {
 

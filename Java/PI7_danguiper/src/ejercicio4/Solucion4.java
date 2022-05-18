@@ -7,6 +7,9 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.jgrapht.GraphPath;
+
+import datos.datosEj4;
+
 public class Solucion4 {
 	public int contenedoresLLenos;
 	public Map<Integer,List<String>> solucion;

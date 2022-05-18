@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import ejercicio2.datosEj2;
+
+import datos.datosEj2;
 
 public class Ej2_BT {
 

@@ -2,6 +2,8 @@ package ejercicio4;
 
 import java.util.function.Predicate;
 
+import datos.datosEj4;
+
 
 public class heuristicaEj4 {
 	public static Double heuristic(Ej4_Vertex actual,Predicate<Ej4_Vertex> goal,Ej4_Vertex fin){

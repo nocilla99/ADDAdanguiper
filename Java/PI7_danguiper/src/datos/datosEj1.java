@@ -1,4 +1,4 @@
-package ejercicio1;
+package datos;
 
 import java.util.List;
 import us.lsi.common.Files2;

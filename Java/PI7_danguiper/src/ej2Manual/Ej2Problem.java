@@ -3,8 +3,9 @@ package ej2Manual;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import ejercicio2.datosEj2;
-import ejercicio2.datosEj2.TipoCandidato;
+
+import datos.datosEj2;
+import datos.datosEj2.TipoCandidato;
 import us.lsi.common.List2;
 import us.lsi.common.Preconditions;
 

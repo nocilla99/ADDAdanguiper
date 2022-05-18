@@ -6,7 +6,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import ejercicio4.datosEj4.Elemento;
+import datos.datosEj4;
+import datos.datosEj4.Elemento;
 import us.lsi.common.List2;
 import us.lsi.graphs.virtual.VirtualVertex;
 

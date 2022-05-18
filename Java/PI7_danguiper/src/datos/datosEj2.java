@@ -1,4 +1,4 @@
-package ejercicio2;
+package datos;
 
 import java.util.ArrayList;
 import java.util.List;

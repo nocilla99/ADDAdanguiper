@@ -2,8 +2,9 @@ package ej2Manual;
 
 import java.util.ArrayList;
 import java.util.List;
-import ejercicio2.datosEj2;
-import ejercicio2.datosEj2.TipoCandidato;
+
+import datos.datosEj2;
+import datos.datosEj2.TipoCandidato;
 
 public record Solucion2Man(List<String> seleccionados,double coste,int valoraciones) {	
 

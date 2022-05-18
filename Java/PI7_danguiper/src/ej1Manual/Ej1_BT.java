@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import ejercicio1.datosEj1;
+
+import datos.datosEj1;
 
 public class Ej1_BT {
 
@@ -95,7 +96,7 @@ public class Ej1_BT {
 	}
 	
 	public static void main(String[] args) {
-		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada1.txt");
+		datosEj1.iniDatos("./fichero/PI6Ej1DatosEntrada2.txt");
 		List<Integer> caps= datosEj1.memorias.stream().map(x->x.capacidad()).collect(Collectors.toList());
 		Ej1_BT.btm(caps);
 		//System.out.println(Ej1_BT.soluciones);

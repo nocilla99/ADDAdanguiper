@@ -3,7 +3,8 @@ package ej1Manual;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import ejercicio1.datosEj1;
+
+import datos.datosEj1;
 import us.lsi.common.List2;
 import us.lsi.common.Preconditions;
 

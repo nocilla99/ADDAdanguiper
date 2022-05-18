@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import ejercicio1.datosEj1;
+import datos.datosEj1;
 
 public record Solucion1Man(Integer valor,List<Integer> acciones,Map<Integer,List<String>> s) {	
 
