@@ -58,7 +58,7 @@ public class Ej3_PD {
 				if(cota < Ej3_PD.maxValue) continue;				
 				Spm s = pd(vertex.vecino(a),d+a*datosEj3.getProducto(vertex.indice()).precio(),memory);
 				if(s!=null) {
-					Spm sp = Spm.of(a,s.weight()+a*a*datosEj3.getProducto(vertex.indice()).precio());
+					Spm sp = Spm.of(a,s.weight()+a*datosEj3.getProducto(vertex.indice()).precio());
 					soluciones.add(sp);
 				}
 			}

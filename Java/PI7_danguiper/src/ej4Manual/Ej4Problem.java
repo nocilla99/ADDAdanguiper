@@ -1,51 +1,50 @@
 package ej4Manual;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import datos.datosEj3;
-import datos.datosEj3.TipoProducto;
+import datos.datosEj4.Elemento;
+import datos.datosEj4;
 import us.lsi.common.List2;
 import us.lsi.common.Preconditions;
 
-public record Ej4Problem(int indice, int TProdRestante,int TManRestante)  {  //COMO VERTEX
+public record Ej4Problem(Integer indice,List<Integer> capRestantes)  {  //COMO VERTEX
 	 
-	public static Ej4Problem of(int indice, int TProdRestante,int TManRestante) {
-		Preconditions.checkArgument(indice>=0 && indice<=datosEj3.getProductos(),
-				"indice: "+indice+" Tprod: "+TProdRestante+" Tman:"+TManRestante);
-		return new Ej4Problem(indice,TProdRestante, TManRestante);
+	public static Ej4Problem of(Integer indice,List<Integer> capRestantes) {
+		Preconditions.checkArgument(indice>=0 && indice<=datosEj4.getNumElems(),
+				"indice: "+indice+" Tprod: "+capRestantes);
+		return new Ej4Problem(indice,capRestantes);
 	}
-	public static Ej4Problem inicio() {return of(0, datosEj3.TiempoMaxProd,datosEj3.TiempoMaxManual);}
+	
 	
 	public Ej4Problem vecino(Integer a) { //idem a vertex
-		TipoProducto prod=datosEj3.getProducto(indice);
-		int tp=datosEj3.getTiempoProduccion(prod);
-		int tm=datosEj3.getTiempoManual(prod);
-		
-		return of(indice+1,TProdRestante-(tp*a),TManRestante-(tm*a));
+		List<Integer> copia= List2.copy(capRestantes);
+		if(a!=-1) {
+				copia.set(a, copia.get(a)-datosEj4.getElemento(indice).tamaño());
+			return of(indice+1,copia);
+		}else {
+			return of(indice+1,copia);
+		}
+	}
+
+	public int peso() {
+		return (int) capRestantes.stream().filter(x->x==0).count();
 	}
 	
 	public List<Integer> actions() { //idem a vertex 
-		List<Integer> la= List2.empty();
-		if(indice>=datosEj3.getProductos()) {
-			return la;
+		if(indice>=datosEj4.getNumElems()) {
+			return List2.empty();
 		}
-		la.addAll(IntStream.range(0,datosEj3.getProducto(indice).maxUnidades()+1)
-				.filter(x->aplicable(x))
+		 List<Integer> la= new ArrayList<>();
+		 Elemento elemento=datosEj4.getElemento(indice);
+		 
+		 la.add(-1);
+		 la.addAll(IntStream.range(0, datosEj4.getNumContenedores())
+				.filter(c->capRestantes.get(c)-elemento.tamaño()>=0
+						&& elemento.tipos().contains(datosEj4.getContenedor(c).tipo()))
 				.boxed().toList());
 		 
 		 return la;
-	}
-	
-	
-	private Boolean aplicable(int cantidad) {
-		TipoProducto prod=datosEj3.getProducto(indice);
-		int tp=datosEj3.getTiempoProduccion(prod);
-		int tm=datosEj3.getTiempoManual(prod);
-		
-		
-		Boolean res= (TProdRestante-(tp*cantidad)>=0 )  && (TManRestante-(tm*cantidad)>=0);
-		return res;
 	}
 	
 }

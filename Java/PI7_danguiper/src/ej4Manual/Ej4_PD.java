@@ -5,14 +5,14 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import datos.datosEj3;
+import java.util.stream.Collectors;
+import datos.datosEj4;
 
 public class Ej4_PD {
 
-	public static record Spm(Integer a,Double weight) implements Comparable<Spm> {
+	public static record Spm(Integer a,Integer weight) implements Comparable<Spm> {
 		
-		public static Spm of(Integer a, Double d) {
+		public static Spm of(Integer a, Integer d) {
 			return new Spm(a, d);
 		}
 		
@@ -26,39 +26,39 @@ public class Ej4_PD {
 	public static Ej4Problem start;
 	public static Map<Ej4Problem,Spm> memory;
 	
-	public static Solucion4Man pd(int tp, int tm) {
+	public static Solucion4Man pd(List<Integer> capRestantes) {
 		Ej4_PD.maxValue = Integer.MIN_VALUE;
-		Ej4_PD.start = Ej4Problem.of(0,tp,tm);
+		Ej4_PD.start = Ej4Problem.of(0, capRestantes);
 		Ej4_PD.memory = new HashMap<>();
 		pd(start,0,memory);
 		return Ej4_PD.solucion();
 	}
 	
-	public static Solucion4Man pd(int tp,int tm, double maxValue, Solucion4Man s) {
+	/*public static Solucion4Man pd(List<Integer> capRestantes, int maxValue, Solucion4Man s) {
 		Ej4_PD.maxValue = maxValue;
-		Ej4_PD.start = Ej4Problem.of(0,tp,tm);
+		Ej4_PD.start = Ej4Problem.of(0,capRestantes);
 		Ej4_PD.memory = new HashMap<>();
 		pd(start,0,memory);
 		if(Ej4_PD.memory.get(start) == null) return s;
 		else return Ej4_PD.solucion();
-	}
+	}*/
 	
-	public static Spm pd(Ej4Problem vertex,double d, Map<Ej4Problem,Spm> memory) {
+	public static Spm pd(Ej4Problem vertex,int d, Map<Ej4Problem,Spm> memory) {
 		Spm r;
 		if(memory.containsKey(vertex)) {
 			r = memory.get(vertex);
-		} else if(vertex.indice() == datosEj3.getProductos()) {
-			r = Spm.of(null,0.);
+		} else if(vertex.indice() == datosEj4.getNumElems()) {
+			r = Spm.of(null,0);
 			memory.put(vertex,r);
 			if(d > Ej4_PD.maxValue) Ej4_PD.maxValue = d;
 		} else {
 			List<Spm> soluciones = new ArrayList<>();
 			for(Integer a:vertex.actions()) {	
-				Double cota = d + Heuristica.cota(vertex,a);
+				Double cota = Heuristica.cota(vertex,a);
 				if(cota < Ej4_PD.maxValue) continue;				
-				Spm s = pd(vertex.vecino(a),d+a*datosEj3.getProducto(vertex.indice()).precio(),memory);
+				Spm s = pd(vertex.vecino(a),vertex.peso(),memory);
 				if(s!=null) {
-					Spm sp = Spm.of(a,s.weight()+a*a*datosEj3.getProducto(vertex.indice()).precio());
+					Spm sp = Spm.of(a,s.weight());
 					soluciones.add(sp);
 				}
 			}
@@ -82,10 +82,9 @@ public class Ej4_PD {
 	
 	
 	public static void main(String[] args) {
-		datosEj3.iniDatos("./fichero/PI6Ej3DatosEntrada1.txt");
-		Ej4_PD.pd(datosEj3.TiempoMaxProd,datosEj3.TiempoMaxManual);
-		System.out.println(Ej4_PD.solucion().toString());
-		System.out.println();
+		datosEj4.iniDatos("./fichero/PI6Ej4DatosEntrada1.txt");
+		Ej4_PD.pd(datosEj4.contenedores.stream().map(x->x.capacidad()).collect(Collectors.toList()));
+		System.out.println(Ej4_PD.solucion());
 	}
 
 }
