@@ -3,13 +3,15 @@ package ej4Manual;
 public class Heuristica {
 	
 
-	public static double cota(Ej4Problem vertice, Integer a) { //peso arista final
-		Ej4Problem v2= vertice.vecino(a);
-		return heuristica(v2);
-	}
 
-	private static double heuristica(Ej4Problem v1) { //contenedores llenos
-		return 1.*v1.peso();
+	public static Double heuristic(Ej4Problem actual) {
+		return actual.peso()*1.0;
 	}
-
+	
+	public static Double cota(Ej4Problem v1, Integer a) {
+		Ej4Problem v2 = v1.vecino(a);
+		return heuristic(v2);
+	}
+	
 }
+
